@@ -16,6 +16,7 @@
     "babel-polyfill": "^6.26.0",
     "css-loader": "^3.2.0",
     "js-md5": "^0.7.3",
+    "lodash": "^4.17.15",
     "ngprogress": "^1.1.3",
     "node-sass": "^4.12.0",
     "nprogress": "^0.2.0",
