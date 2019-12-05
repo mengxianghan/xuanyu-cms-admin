@@ -42,8 +42,14 @@
                         <a-input v-decorator="['external_links']"></a-input>
                     </a-form-item>
                     <a-form-item label="标签">
-                        <a-select v-decorator="['tags']"
-                                  mode="tags"></a-select>
+                        <a-select v-decorator="['tag']"
+                                  mode="tags"
+                                  :not-found-content="tagSpinning ? undefined : null"
+                                  @search="onTagSearch"
+                                  @change="onTagChange">
+                            <a-spin v-if="tagSpinning" slot="notFoundContent" size="small"/>
+                            <a-select-option v-for="item in tagList" :key="item.value">{{item.text}}</a-select-option>
+                        </a-select>
                     </a-form-item>
                     <a-form-item label="属性">
                         <a-checkbox v-decorator="['is_recommend',{valuePropName:'checked'}]">推荐</a-checkbox>
@@ -67,18 +73,18 @@
 <script>
     import {form} from '@/utils/mixin';
     import {changeKeys, stringToArray, arrayToString, stringToBoolean, booleanToString} from "@/utils/util";
+    import {debounce} from 'lodash';
 
     export default {
         mixins: [form],
         data() {
+            this.onTagSearch = debounce(this.onTagSearch, 500);
             return {
-                columnLoading: false
+                columnLoading: false,
+                tagList: [],
+                tagSpinning: false
             };
         },
-        created() {
-
-        },
-        watch: {},
         computed: {
             columnTreeData() {
                 return this.$parent.columnTreeData;
@@ -110,7 +116,7 @@
                         author: record.author,
                         source: record.source,
                         external_links: record.external_links,
-                        tags: stringToArray(record.tags),
+                        tag: stringToArray(record.tag),
                         is_recommend: stringToBoolean(record.is_recommend),
                         is_hot: stringToBoolean(record.is_hot),
                         status: record.status,
@@ -138,6 +144,8 @@
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
                         this.confirmLoading = true;
+                        const tag = arrayToString(values.tag);
+                        this.submitTag(tag);
                         this.$api.information.news.submit({
                             id: this.record.id,
                             title: values.title,
@@ -149,7 +157,7 @@
                             author: values.author,
                             source: values.source,
                             external_links: values.external_links,
-                            tags: arrayToString(values.tags),
+                            tag: tag,
                             is_recommend: booleanToString(values.is_recommend),
                             is_hot: booleanToString(values.is_hot),
                             status: values.status,
@@ -161,6 +169,8 @@
                                 this.toggleModal();
                                 this.$emit('ok');
                             }
+                        }, error => {
+                            this.confirmLoading = false;
                         });
                     }
                 });
@@ -172,6 +182,46 @@
                 this.reset();
                 this.toggleModal();
                 this.$emit('cancel');
+            },
+            /**
+             * 搜索标签
+             * @param value
+             */
+            onTagSearch(value) {
+                if (!value) return;
+                this.tagSpinning = true;
+                this.$api.information.tag.getList({
+                    name: value,
+                    has_pagination: '0'
+                }).then(({code, data: {list}}) => {
+                    this.tagSpinning = false;
+                    if (code == '0') {
+                        const tagList = list.map(item => ({
+                            text: item.name,
+                            value: item.name
+                        }));
+                        this.tagList = tagList;
+                    }
+                }, error => {
+                    this.tagSpinning = false;
+                });
+            },
+            /**
+             * 标签发生改变
+             */
+            onTagChange() {
+                this.tagList = [];
+            },
+            /**
+             * 提交 tag
+             * @param name
+             * @returns {Promise<void>}
+             */
+            async submitTag(name) {
+                if (!name) return;
+                await this.$api.information.tag.replace({
+                    name: name
+                });
             }
         }
     };
