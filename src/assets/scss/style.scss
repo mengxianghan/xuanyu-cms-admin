@@ -1,0 +1,11 @@
+.table-page-search {
+    .ant-form-inline {
+        .ant-form-item {
+            display: flex;
+
+            .ant-form-item-control-wrapper {
+                flex: 1
+            }
+        }
+    }
+}

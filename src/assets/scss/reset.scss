@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    color: rgba(0, 0, 0, .65);
+}
+
+input, radio, checkbox, textarea, button {
+    font-family: inherit;
+    resize: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: rgba(0, 0, 0, .025);
+}
+
+:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .1);
+}
+
+
+/*nprogress*/
+#nprogress .bar {
+    background: #1890ff;
+}
+
+#nprogress .peg {
+    -webkit-box-shadow: 0 0 10px #1890ff, 0 0 5px #1890ff;
+    box-shadow: 0 0 10px #1890ff, 0 0 5px #1890ff;
+}
+
+#nprogress .spinner-icon {
+    border-top-color: #1890ff;
+    border-left-color: #1890ff;
+}
