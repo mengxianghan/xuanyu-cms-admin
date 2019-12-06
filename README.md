@@ -1,10 +1,14 @@
-# xuanyu CMS 前端
+<p align="center">
+<img src="http://q219t1n5l.bkt.clouddn.com/logo.svg" height="200" />
+</p>
 
-<img src="https://github.com/mengxianghan/xuanyu-cms-front/blob/master/src/assets/images/logo.svg" height="200" />
+# xuanyu CMS
 
 xuanyu CMS是一款前后端分离快速后台开发框架，前端基于vue-ant-design，后端基于codeigniter轻量级php框架开发
 
-后端代码请移步至 [https://github.com/mengxianghan/xuanyu-cms](https://github.com/mengxianghan/xuanyu-cms)
+后端代码请移步至
+Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/mengxianghan/xuanyu-cms)  
+码云地址：[https://gitee.com/1056811341/xuanyu-cms](https://gitee.com/1056811341/xuanyu-cms)
 
 账号：admin  
 密码：123456  
@@ -36,6 +40,12 @@ xuanyu CMS是一款前后端分离快速后台开发框架，前端基于vue-ant
   - 模版管理
   - 新闻管理
   - 单页管理
+
+## 预览
+![工作台](http://q219t1n5l.bkt.clouddn.com/%E5%B7%A5%E4%BD%9C%E5%8F%B0.png)
+![基本设置](http://q219t1n5l.bkt.clouddn.com/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE.png)
+![菜单管理](http://q219t1n5l.bkt.clouddn.com/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png)
+![设置权限](http://q219t1n5l.bkt.clouddn.com/%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90.png)
 
 ## 安装
 
