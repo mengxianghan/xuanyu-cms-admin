@@ -32,6 +32,10 @@
                                        :loading="columnLoading"
                                        tree-default-expand-all></a-tree-select>
                     </a-form-item>
+                    <a-form-item label="缩略图">
+                        <x-upload
+                                v-decorator="['thumb']"></x-upload>
+                    </a-form-item>
                     <a-form-item label="作者">
                         <a-input v-decorator="['author']"></a-input>
                     </a-form-item>
@@ -115,6 +119,7 @@
                         column_id: record.column_id,
                         author: record.author,
                         source: record.source,
+                        thumb: record.thumb,
                         external_links: record.external_links,
                         tag: stringToArray(record.tag),
                         is_recommend: stringToBoolean(record.is_recommend),
@@ -156,6 +161,7 @@
                             column_id: values.column_id,
                             author: values.author,
                             source: values.source,
+                            thumb: values.thumb,
                             external_links: values.external_links,
                             tag: tag,
                             is_recommend: booleanToString(values.is_recommend),
