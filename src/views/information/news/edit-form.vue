@@ -3,6 +3,7 @@
              :title="title"
              :confirm-loading="confirmLoading"
              width="90%"
+             :destory-on-close="true"
              @ok="onOk"
              @cancel="onCancel">
         <a-form :form="form"
@@ -31,6 +32,13 @@
                                        :tree-data="columnTreeData"
                                        :loading="columnLoading"
                                        tree-default-expand-all></a-tree-select>
+                    </a-form-item>
+                    <a-form-item label="缩略图">
+                        <x-upload v-decorator="['thumb']"
+                                  list-type="picture-card"
+                                  show-upload-list
+                                  v-if="visible">
+                        </x-upload>
                     </a-form-item>
                     <a-form-item label="作者">
                         <a-input v-decorator="['author']"></a-input>
@@ -115,6 +123,7 @@
                         column_id: record.column_id,
                         author: record.author,
                         source: record.source,
+                        thumb: record.thumb,
                         external_links: record.external_links,
                         tag: stringToArray(record.tag),
                         is_recommend: stringToBoolean(record.is_recommend),
@@ -156,6 +165,7 @@
                             column_id: values.column_id,
                             author: values.author,
                             source: values.source,
+                            thumb: values.thumb,
                             external_links: values.external_links,
                             tag: tag,
                             is_recommend: booleanToString(values.is_recommend),
@@ -227,6 +237,5 @@
     };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 </style>
