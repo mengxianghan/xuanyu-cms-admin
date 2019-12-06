@@ -23,6 +23,7 @@
             </a-form-item>
             <a-form-item label="部门">
                 <a-tree-select :tree-data="treeData"
+                               tree-default-expand-all
                                v-decorator="['dept_id']"></a-tree-select>
             </a-form-item>
             <a-form-item label="岗位">
