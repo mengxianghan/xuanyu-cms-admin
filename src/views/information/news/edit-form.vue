@@ -3,6 +3,7 @@
              :title="title"
              :confirm-loading="confirmLoading"
              width="90%"
+             :destory-on-close="true"
              @ok="onOk"
              @cancel="onCancel">
         <a-form :form="form"
@@ -33,8 +34,10 @@
                                        tree-default-expand-all></a-tree-select>
                     </a-form-item>
                     <a-form-item label="缩略图">
-                        <x-upload
-                                v-decorator="['thumb']"></x-upload>
+                        <x-upload v-decorator="['thumb']"
+                                  list-type="picture-card"
+                                  class="thumb">
+                        </x-upload>
                     </a-form-item>
                     <a-form-item label="作者">
                         <a-input v-decorator="['author']"></a-input>
@@ -233,6 +236,13 @@
     };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .thumb {
+        /deep/ {
+            .ant-upload-select-picture-card {
+                width: 168px;
+                height: 100px;
+            }
+        }
+    }
 </style>
