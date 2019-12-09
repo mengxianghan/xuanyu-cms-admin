@@ -1,30 +1,25 @@
 <template>
-    <a-upload :list-type="listType"
-              multiple
-              :custom-request="customRequest"
-              :show-upload-list="showUploadList"
-              :file-list="fileList"
-              @change="handleChange">
-        <slot :file-list="fileList" :loading="loading">
-            <template v-if="multiple">
-                <a-icon type="plus"></a-icon>
-                <p>选择图片</p>
+    <div>
+        <a-upload :list-type="listType"
+                  multiple
+                  :custom-request="customRequest"
+                  :show-upload-list="showUploadList"
+                  :file-list="fileList"
+                  :remove="handleRemove"
+                  :before-upload="onBeforeUpload"
+                  @change="handleChange"
+                  @preview="handlePreview">
+            <template v-if="fileList.length < count">
+                <slot :file-list="fileList" :loading="loading">
+                    <a-icon type="plus"></a-icon>
+                    <p>选择图片</p>
+                </slot>
             </template>
-            <template v-else>
-                <img v-if="fileList.length" :src="fileList[0].url"/>
-                <div v-else>
-                    <template v-if="!loading">
-                        <a-icon type="plus"/>
-                        <div class="ant-upload-text">选择图片</div>
-                    </template>
-                    <template v-else>
-                        <a-icon type="loading"/>
-                        <div class="ant-upload-text">正在上传</div>
-                    </template>
-                </div>
-            </template>
-        </slot>
-    </a-upload>
+        </a-upload>
+        <a-modal :visible="previewImageVisible" :footer="null" @cancel="previewImageVisible = false">
+            <img style="width: 100%" :src="previewImageUrl"/>
+        </a-modal>
+    </div>
 </template>
 
 <script>
@@ -36,7 +31,7 @@
             value: '',
             field: {
                 type: String,
-                default: 'web_path'
+                default: 'id'
             },
             showUploadList: {
                 type: Boolean,
@@ -49,12 +44,19 @@
             listType: {
                 type: String,
                 default: 'text'
+            },
+            count: {
+                type: Number,
+                default: 1
             }
         },
         data() {
             return {
+                load: true,
                 backfillList: [],
-                loading: false
+                loading: false,
+                previewImageUrl: '',
+                previewImageVisible: false
             };
         },
         computed: {
@@ -82,6 +84,7 @@
                 deep: true,
                 handler(val) {
                     const value = val.map(item => item[this.field] || '').join(',');
+                    this.load = false;
                     // v-model
                     this.$emit('input', value);
                     // v-decorator
@@ -98,6 +101,7 @@
                     this.backfillList = [];
                     return;
                 }
+                if (!this.load) return;
                 const params = {};
                 params['field'] = this.field;
                 params[this.field] = this.value;
@@ -110,7 +114,6 @@
              * 上传文件改变
              */
             handleChange(info) {
-                console.log(info);
                 if (info.file.status === 'uploading') {
                     this.loading = true;
                     return;
@@ -118,6 +121,33 @@
                 if (info.file.status === 'done') {
                     this.loading = false;
                 }
+            },
+            /**
+             * 预览
+             */
+            handlePreview(file) {
+                this.previewImageUrl = file.url;
+                this.previewImageVisible = true;
+            },
+            /**
+             * 移除
+             */
+            handleRemove(file) {
+                if (file) {
+                    const id = file.uid;
+                    const list = this.backfillList.filter(item => item.id !== id);
+                    this.backfillList = list;
+                }
+            },
+            /**
+             * 上传文件前
+             */
+            onBeforeUpload(file, fileList) {
+                if (fileList.length > this.count) {
+                    this.$message.warning(`超出允许上传的数量 ${this.count}`);
+                    return false;
+                }
+                return true;
             },
             /**
              * 自定义上传

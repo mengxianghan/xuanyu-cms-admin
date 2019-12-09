@@ -36,7 +36,8 @@
                     <a-form-item label="缩略图">
                         <x-upload v-decorator="['thumb']"
                                   list-type="picture-card"
-                                  class="thumb">
+                                  show-upload-list
+                                  v-if="visible">
                         </x-upload>
                     </a-form-item>
                     <a-form-item label="作者">
@@ -237,12 +238,4 @@
 </script>
 
 <style lang="scss" scoped>
-    .thumb {
-        /deep/ {
-            .ant-upload-select-picture-card {
-                width: 168px;
-                height: 100px;
-            }
-        }
-    }
 </style>
