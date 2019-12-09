@@ -10,9 +10,10 @@
                 <a-input v-decorator="['username',{rules:[{required:true,message:'请输入用户名'}]}]"></a-input>
             </a-form-item>
             <a-form-item label="密码">
-                <a-input-password v-decorator="['password',{rules:[{validator:verifyPassword}]}]"
-                                  allow-clear
-                                  placeholder="不填写则不修改"></a-input-password>
+                <a-input-password
+                        v-decorator="['password',{rules:[{required:isRequiredPassword,message:'请输入密码'},{validator:verifyPassword}]}]"
+                        allow-clear
+                        placeholder="不填写则不修改"></a-input-password>
             </a-form-item>
             <a-form-item label="角色">
                 <a-select v-decorator="['role_id',{rules:[{required:true,message:'请输入选择角色'}]}]"
@@ -67,7 +68,8 @@
                 roleList: [],
                 roleLoading: false,
                 postList: [],
-                postLoading: false
+                postLoading: false,
+                isRequiredPassword: false
             };
         },
         watch: {
@@ -144,6 +146,7 @@
                 this.title = '新增';
                 this.$nextTick(() => {
                     const deptId = this.$parent.deptId.split(',').length ? this.$parent.deptId.split(',')[0] : '';
+                    this.isRequiredPassword = true;
                     this.form.setFieldsValue({
                         dept_id: deptId
                     });
