@@ -42,10 +42,28 @@ Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/m
   - 单页管理
 
 ## 预览
-![工作台](http://q219t1n5l.bkt.clouddn.com/%E5%B7%A5%E4%BD%9C%E5%8F%B0.png)
-![基本设置](http://q219t1n5l.bkt.clouddn.com/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE.png)
-![菜单管理](http://q219t1n5l.bkt.clouddn.com/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png)
-![设置权限](http://q219t1n5l.bkt.clouddn.com/%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90.png)
+<table>
+    <tr>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/工作台.png" alt="工作台"/></td>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/基本设置.png" alt="基本设置"/></td>
+    </tr>
+    <tr>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/菜单管理.png" alt="菜单管理"/></td>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/用户管理.png" alt=""/></td>
+    </tr>
+    <tr>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/设置权限.png" alt=""/></td>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/部门管理.png" alt=""/></td>
+    </tr>
+	<tr>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/栏目管理.png" alt=""/></td>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/新闻管理.png" alt=""/></td>
+    </tr>	 
+    <tr>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/新增新闻.png" alt=""/></td>
+        <td><img src="http://q219t1n5l.bkt.clouddn.com/单页管理.png" alt=""/></td>
+    </tr>
+</table>
 
 ## 安装
 
@@ -73,6 +91,13 @@ npm run build
 白名单 `whiteList`  
 
 ## 更新日志  
+1.0.1  
+`2019-12-10`  
+新增 `Upload` 上传组件    
+优化新增用户时密码验证  
+优化选择部门时部门数据默认展开
+优化图片默认宽度
+
 1.0.0  
 `2019-12-05`  
 :boom: 对外第一个版本，提供cms的基本功能模块  
