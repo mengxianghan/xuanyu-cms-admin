@@ -24,7 +24,7 @@
                         </div>-->
                         <a-tooltip placement="bottom" title="Github">
                             <div class="layout-header__action">
-                                <a href="https://github.com/mengxianghan/xuanyu-cms-ant"
+                                <a href="https://github.com/mengxianghan/xuanyu-cms-front"
                                    target="_blank">
                                     <a-icon type="github"/>
                                 </a>
