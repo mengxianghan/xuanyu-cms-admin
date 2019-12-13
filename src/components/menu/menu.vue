@@ -2,7 +2,8 @@
     <a-menu theme="dark" mode="inline"
             :openKeys="openKeys"
             v-model="selectedKeys"
-            @openChange="onOpenChange">
+            @openChange="onOpenChange"
+            class="menu">
         <template v-for="item in menu">
             <x-sub-menu v-if="item.children" :menu-info="item" :key="item.meta.id"/>
             <x-menu-item v-else :menu-info="item" :key="item.meta.id"></x-menu-item>
@@ -71,6 +72,6 @@
     };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

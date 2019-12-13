@@ -139,22 +139,24 @@
         }
     }
 
-    .ant-layout-header {
-        box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-    }
+    /deep/ {
+        .ant-layout-header {
+            box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+        }
 
-    .ant-layout-sider {
-        box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
-        position: relative;
-        z-index: 10;
-    }
+        .ant-layout-sider {
+            box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
+            position: relative;
+            z-index: 10;
+        }
 
-    .ant-menu {
-        height: calc(100vh - 64px);
-        overflow: hidden;
+        .menu.ant-menu {
+            height: calc(100vh - 64px);
+            overflow: hidden;
 
-        &:hover {
-            overflow-y: auto;
+            &:hover {
+                overflow-y: auto;
+            }
         }
     }
 </style>
