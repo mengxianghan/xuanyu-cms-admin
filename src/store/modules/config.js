@@ -28,7 +28,7 @@ const actions = {
             const {code, data} = await Vue.api.system.config.getData({
                 site: rootState.app.site
             });
-            if (code == '0') {
+            if (code === '0') {
                 payload = data;
             }
         }

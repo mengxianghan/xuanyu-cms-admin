@@ -94,7 +94,7 @@
                 this.loading = true;
                 this.$api.information.column.getList().then(({code, data: {list}}) => {
                     this.loading = false;
-                    if (code == '0') {
+                    if (code === '0') {
                         this.list = list;
                     }
                 }).catch(() => {

@@ -59,7 +59,7 @@
                     status: '1'
                 });
                 this.menuLoading = false;
-                if (code == '0') {
+                if (code === '0') {
                     this.menuList = changeKeys(list);
                 }
             },
@@ -94,7 +94,7 @@
                 this.$api.information.template.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code == 0) {
+                    if (code === '0') {
                         this.$emit('delete', record);
                     }
                 });
@@ -114,7 +114,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code == 0) {
+                            if (code === '0') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');

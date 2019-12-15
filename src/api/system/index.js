@@ -11,6 +11,7 @@ import role from './role';
 import upload from './upload';
 import uploadDir from "./uploadDir";
 import user from './user';
+import log from './log';
 
 export default {
     auth,
@@ -25,5 +26,6 @@ export default {
     role,
     upload,
     uploadDir,
-    user
+    user,
+    log
 };

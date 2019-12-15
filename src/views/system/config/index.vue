@@ -56,12 +56,12 @@
                     <a-input v-decorator="['upload_dir']"></a-input>
                 </a-form-item>
                 <a-form-item label="允许的文件类型"
-                             help="* 代表所有文件；也可以使用 jpg|png|gif 方式">
+                             extra="* 代表所有文件；也可以使用 jpg|png|gif 方式">
                     <a-input
                             v-decorator="['allowed_file_type']"></a-input>
                 </a-form-item>
                 <a-form-item label="允许的文件大小"
-                             help="1 MB = 1024 KB">
+                             extra="1 MB = 1024 KB">
                     <a-input v-decorator="['allowed_file_size']"
                              addonAfter="MB"></a-input>
                 </a-form-item>
@@ -121,7 +121,7 @@
              */
             getData() {
                 this.$api.system.config.getData().then(({code, data}) => {
-                    if (code == '0') {
+                    if (code === '0') {
                         this.form.setFieldsValue({
                             name: data.name,
                             domain_name: data.domain_name,
@@ -163,7 +163,7 @@
                             allowed_file_size: values.allowed_file_size
                         }).then(({code, data}) => {
                             this.loading = false;
-                            if (code == '0') {
+                            if (code === '0') {
                                 if (data.insert_id) {
                                     this.id = data.insert_id;
                                 }

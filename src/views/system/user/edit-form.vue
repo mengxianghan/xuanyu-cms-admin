@@ -9,11 +9,11 @@
             <a-form-item label="用户名">
                 <a-input v-decorator="['username',{rules:[{required:true,message:'请输入用户名'}]}]"></a-input>
             </a-form-item>
-            <a-form-item label="密码">
+            <a-form-item label="密码"
+                         :extra="isRequiredPassword ? '' : '不填写则不修改'">
                 <a-input-password
                         v-decorator="['password',{rules:[{required:isRequiredPassword,message:'请输入密码'},{validator:verifyPassword}]}]"
-                        allow-clear
-                        placeholder="不填写则不修改"></a-input-password>
+                        allow-clear></a-input-password>
             </a-form-item>
             <a-form-item label="角色">
                 <a-select v-decorator="['role_id',{rules:[{required:true,message:'请输入选择角色'}]}]"
@@ -120,7 +120,7 @@
                     has_pagination: '0'
                 });
                 this.roleLoading = false;
-                if (code == '0') {
+                if (code === '0') {
                     this.roleList = list;
                 }
             },
@@ -134,7 +134,7 @@
                     has_pagination: '0'
                 });
                 this.postLoading = false;
-                if (code == '0') {
+                if (code === '0') {
                     this.postList = list;
                 }
             },
@@ -160,6 +160,7 @@
                 this.record = record;
                 this.title = '编辑';
                 this.$nextTick(() => {
+                    this.isRequiredPassword = false;
                     this.form.setFieldsValue({
                         username: record.username,
                         role_id: record.role_id,
@@ -181,7 +182,7 @@
                 this.$api.system.user.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code == 0) {
+                    if (code === '0') {
                         this.$emit('delete', record);
                     }
                 });
@@ -207,7 +208,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code == 0) {
+                            if (code === '0') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');

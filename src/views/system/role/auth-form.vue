@@ -90,7 +90,7 @@
                     type: '2'
                 }).then(({code, data: {list}}) => {
                     this.spinning = false;
-                    if (code == '0') {
+                    if (code === '0') {
                         this.list = formatMenuList(list);
                     }
                 });

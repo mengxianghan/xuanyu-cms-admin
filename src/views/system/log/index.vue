@@ -1,68 +1,66 @@
 <template>
     <div>
         <a-card :bordered="false">
-            <div class="g-margin-bottom-2" v-action:insert>
-                <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">新增岗位</a-button>
-            </div>
-            <a-table :columns="columns"
-                     :data-source="list"
-                     :pagination="pagination"
-                     :loading="loading"
-                     row-key="id"
-                     size="middle"
-                     @change="handleTableChange">
-                <template slot="status" slot-scope="text">
-                    <x-status :code="text"></x-status>
-                </template>
-                <template slot="operation" slot-scope="text,record">
-                    <span v-action:edit>
-                        <a @click="$refs.editForm.handleEdit(record)">编辑</a>
-                        <a-divider type="vertical"></a-divider>
-                    </span>
-                    <span v-action:delete>
-                        <a-popconfirm title="确认删除此数据?"
-                                      @confirm="$refs.editForm.handleDelete(record)">
-                            <a>删除</a>
-                        </a-popconfirm>
-                    </span>
-                </template>
-            </a-table>
+            <a-row :gutter="16"
+                   type="flex">
+                <a-col :md="5" :xs="24">
+                    <a-menu mode="inline"
+                            :defaultSelectedKeys="['0']"
+                            :open-keys.sync="openKeys"
+                            class="log-menu">
+                        <a-menu-item key="0">全部日志</a-menu-item>
+                        <a-menu-item key="1">登录日志</a-menu-item>
+                        <a-menu-item key="2">操作日志</a-menu-item>
+                        <a-menu-item key="3">异常日志</a-menu-item>
+                    </a-menu>
+                </a-col>
+                <a-col :md="19" :xs="24">
+                    <a-table :columns="columns"
+                             :data-source="list"
+                             :pagination="pagination"
+                             :loading="loading"
+                             row-key="id"
+                             size="middle"
+                             @change="handleTableChange">
+                    </a-table>
+                </a-col>
+            </a-row>
         </a-card>
-
-        <edit-form ref="editForm" @ok="onOk" @delete="onDelete"></edit-form>
     </div>
 </template>
 
 <script>
-    import EditForm from './edit-form';
-
     const columns = [
         {
-            title: '岗位名称',
+            title: '用户名',
             dataIndex: 'name'
         },
         {
-            title: '状态',
-            dataIndex: 'status',
-            scopedSlots: {customRender: 'status'}
+            title: '请求接口',
+            dataIndex: 'api'
         },
         {
-            title: '排序',
-            dataIndex: 'sort'
+            title: '参数',
+            dataIndex: 'params'
         },
         {
-            title: '创建时间',
+            title: '浏览器',
+            dataIndex: 'browser'
+        },
+        {
+            title: 'IP',
+            dataIndex: 'ip'
+        },
+        {
+            title: '时间',
             dataIndex: 'create_time'
         }
     ];
     export default {
-        name: "index",
-        components: {
-            EditForm
-        },
         data() {
             return {
                 columns,
+                openKeys: ['0'],
                 list: [],
                 pagination: {
                     showSizeChanger: true
@@ -79,12 +77,12 @@
              */
             getList() {
                 this.loading = true;
-                this.$api.system.loginLog.getList({
+                this.$api.system.log.getList({
                     current_page: this.pagination.current,
                     page_size: this.pagination.pageSize
                 }).then(({code, data: {list, total}}) => {
                     this.loading = false;
-                    if (code == '0') {
+                    if (code === '0') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
@@ -106,24 +104,13 @@
                     pageSize: pagination.pageSize
                 };
                 this.getList();
-            },
-            /**
-             * 确认
-             */
-            onOk() {
-                this.getList();
-            },
-            /**
-             * 删除
-             * @param record
-             */
-            onDelete(record) {
-                this.getList();
             }
         }
     };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .log-menu {
+        height: 100%;
+    }
 </style>

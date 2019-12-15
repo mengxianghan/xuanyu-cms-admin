@@ -33,17 +33,12 @@ server.interceptors.request.use(req => {
 //响应拦截器
 server.interceptors.response.use(res => {
     if (res.data.message) {
-        switch (res.data.code) {
-            case '0':
+        if (res.data.message) {
+            if (res.data.code === '0') {
                 message.success(`${res.data.message}`);
-                break;
-            case '3':
+            } else {
                 message.warning(`${res.data.message}，code：${res.data.code}`);
-                // router.replace({name: 'login'});
-                break;
-            default:
-                message.warning(`${res.data.message}，code：${res.data.code}`);
-                break;
+            }
         }
     }
     return res;

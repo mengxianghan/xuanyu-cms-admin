@@ -18,7 +18,7 @@
                 <a-input v-decorator="['icon']"></a-input>
             </a-form-item>
             <a-form-item label="路由地址"
-                         help="支持外部链接，例：http://www.域名.com">
+                         extra="支持外部链接，例：http://www.域名.com">
                 <a-input v-decorator="['route_path']"></a-input>
             </a-form-item>
             <a-form-item label="路由名称">
@@ -118,7 +118,7 @@
                 const {code, data: {list}} = await this.$api.system.authButton.getList({
                     status: '1'
                 });
-                if (code == '0') {
+                if (code === '0') {
                     this.authButtonList = list;
                 }
             },
@@ -172,7 +172,7 @@
                 this.$api.system.menu.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code == '0') {
+                    if (code === '0') {
                         this.$emit('delete', record);
                     }
                 });
@@ -198,7 +198,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code == 0) {
+                            if (code === '0') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');

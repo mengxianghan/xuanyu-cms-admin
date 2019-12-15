@@ -145,7 +145,7 @@
                     dict_dir_id: this.dictDirId
                 }).then(({code, data: {list, total}}) => {
                     this.loading = false;
-                    if (code == '0') {
+                    if (code === '0') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
@@ -165,7 +165,7 @@
                     status: '1'
                 }).then(({code, data: {list}}) => {
                     this.dictDirLoading = false;
-                    if (code == '0') {
+                    if (code === '0') {
                         this.dictDirList = list;
                     }
                 });
@@ -190,7 +190,7 @@
                 this.$api.system.dict.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code == 0) {
+                    if (code === '0') {
                         this.getList();
                     }
                 });
