@@ -167,7 +167,7 @@
                                 if (data.insert_id) {
                                     this.id = data.insert_id;
                                 }
-                                this.$store.dispatch('config/setConfig', values);
+                                this.$store.dispatch('config/setConfig');
                             }
                         });
                     }

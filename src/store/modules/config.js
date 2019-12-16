@@ -23,21 +23,17 @@ const actions = {
      * @param rootState
      * @returns {Promise<void>}
      */
-    async setConfig({commit, rootState}, payload = false) {
-        if (!state.configComplete) {
-            const {code, data} = await Vue.api.system.config.getData({
-                site: rootState.app.site
-            });
-            if (code === '0') {
-                payload = data;
-            }
-        }
-        if (payload) {
+    async setConfig({commit, rootState}) {
+        const {code, data} = await Vue.api.system.config.getData({
+            site: rootState.app.site
+        });
+        if (code === '0') {
             commit('SET_CONFIG', {
-                domainName: payload.domain_name,
-                uploadDir: payload.upload_dir,
-                allowedFileType: payload.allowed_file_type,
-                allowedFileSize: Number(payload.allowed_file_size)
+                configComplete: true,
+                domainName: data.domain_name,
+                uploadDir: data.upload_dir,
+                allowedFileType: data.allowed_file_type,
+                allowedFileSize: Number(data.allowed_file_size)
             });
         }
     }

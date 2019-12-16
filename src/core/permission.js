@@ -14,7 +14,9 @@ router.beforeEach((to, from, next) => {
         store.dispatch('user/setUserInfo').then(res => {
             if (res) { // 已登录
                 // 设置配置信息
-                store.dispatch('config/setConfig');
+                if (!store.state.config.configComplete) {
+                    store.dispatch('config/setConfig');
+                }
                 if (store.state.asyncRoutes.routesComplete) { // 路由加载完成
                     next();
                 } else { // 路由未加载，执行加载
