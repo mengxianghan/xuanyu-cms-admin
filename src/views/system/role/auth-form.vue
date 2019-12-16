@@ -90,7 +90,7 @@
                     type: '2'
                 }).then(({code, data: {list}}) => {
                     this.spinning = false;
-                    if (code === '0') {
+                    if (code === '200') {
                         this.list = formatMenuList(list);
                     }
                 });
@@ -105,7 +105,7 @@
                     type: this.type
                 });
                 this.spinning = false;
-                if (code === '0') {
+                if (code === '200') {
                     let checkedKeys = [];
                     let halfCheckedKeys = [];
                     list.forEach(item => {
@@ -149,7 +149,7 @@
                     values: values
                 }).then(({code}) => {
                     this.confirmLoading = false;
-                    if (code === '0') {
+                    if (code === '200') {
                         this.reset();
                         this.toggleModal();
                         this.$emit('ok');

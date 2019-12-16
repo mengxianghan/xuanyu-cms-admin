@@ -121,7 +121,7 @@
              */
             getData() {
                 this.$api.system.config.getData().then(({code, data}) => {
-                    if (code === '0') {
+                    if (code === '200') {
                         this.form.setFieldsValue({
                             name: data.name,
                             domain_name: data.domain_name,
@@ -163,7 +163,7 @@
                             allowed_file_size: values.allowed_file_size
                         }).then(({code, data}) => {
                             this.loading = false;
-                            if (code === '0') {
+                            if (code === '200') {
                                 if (data.insert_id) {
                                     this.id = data.insert_id;
                                 }

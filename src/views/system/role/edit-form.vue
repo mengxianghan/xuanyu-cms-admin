@@ -70,7 +70,7 @@
                 this.$api.system.role.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code === '0') {
+                    if (code === '200') {
                         this.$emit('delete', record);
                     }
                 });
@@ -89,7 +89,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code === '0') {
+                            if (code === '200') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');

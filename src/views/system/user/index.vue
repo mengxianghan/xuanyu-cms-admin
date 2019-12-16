@@ -130,7 +130,7 @@
                     dept_id: this.deptId
                 }).then(({code, data: {list, total}}) => {
                     this.loading = false;
-                    if (code === '0') {
+                    if (code === '200') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
@@ -150,7 +150,7 @@
                     status: '1'
                 }).then(({code, data: {list}}) => {
                     this.deptLoading = false;
-                    if (code === '0') {
+                    if (code === '200') {
                         this.deptList = list;
                     }
                 }).catch(() => {

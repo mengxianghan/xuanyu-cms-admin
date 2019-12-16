@@ -92,7 +92,7 @@
                         formData.append('allowed_file_size', this.allowedFileSize);
                         //文件目录
                         this.$api.system.upload.doUpload(formData).then(({code, message, data}) => {
-                            if (code === '0') {
+                            if (code === '200') {
                                 success(data.relative_path);
                             } else {
                                 failure(message);

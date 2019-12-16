@@ -45,7 +45,7 @@
                     status: '1'
                 });
                 this.spinning = false;
-                if (code === '0') {
+                if (code === '200') {
                     const treeData = changeKeys(list, {
                         title: 'name',
                         value: 'id',

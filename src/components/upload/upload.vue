@@ -106,7 +106,7 @@
                 params['field'] = this.field;
                 params[this.field] = this.value;
                 const {code, data: {list}} = await this.$api.system.upload.getBackfillList(params);
-                if (code === '0') {
+                if (code === '200') {
                     this.backfillList = list;
                 }
             },
@@ -170,7 +170,7 @@
                         });
                     }
                 }).then(({code, message, data}) => {
-                    if (code === '0') {
+                    if (code === '200') {
                         if (this.multiple) {
                             this.backfillList.push(data);
                         } else {

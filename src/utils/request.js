@@ -34,7 +34,7 @@ server.interceptors.request.use(req => {
 server.interceptors.response.use(res => {
     if (res.data.message) {
         if (res.data.message) {
-            if (res.data.code === '0') {
+            if (res.data.code === '200') {
                 message.success(`${res.data.message}`);
             } else {
                 message.warning(`${res.data.message}，code：${res.data.code}`);

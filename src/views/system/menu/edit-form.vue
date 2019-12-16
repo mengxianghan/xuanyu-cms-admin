@@ -118,7 +118,7 @@
                 const {code, data: {list}} = await this.$api.system.authButton.getList({
                     status: '1'
                 });
-                if (code === '0') {
+                if (code === '200') {
                     this.authButtonList = list;
                 }
             },
@@ -172,7 +172,7 @@
                 this.$api.system.menu.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code === '0') {
+                    if (code === '200') {
                         this.$emit('delete', record);
                     }
                 });
@@ -198,7 +198,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code === '0') {
+                            if (code === '200') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');

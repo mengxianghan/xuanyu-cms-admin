@@ -128,7 +128,7 @@
                     page_size: this.pagination.pageSize
                 }).then(({code, data: {list, total}}) => {
                     this.loading = false;
-                    if (code === '0') {
+                    if (code === '200') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),

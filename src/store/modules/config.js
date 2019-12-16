@@ -27,7 +27,7 @@ const actions = {
         const {code, data} = await Vue.api.system.config.getData({
             site: rootState.app.site
         });
-        if (code === '0') {
+        if (code === '200') {
             commit('SET_CONFIG', {
                 configComplete: true,
                 domainName: data.domain_name,

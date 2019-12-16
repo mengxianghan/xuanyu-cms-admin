@@ -71,7 +71,7 @@
                     column_id: this.currentColumn.id
                 }).then(({code, data: {title, content}}) => {
                     this.spinning = false;
-                    if (code === '0') {
+                    if (code === '200') {
                         this.form.setFieldsValue({
                             title: title || this.currentColumn.name,
                             content: content

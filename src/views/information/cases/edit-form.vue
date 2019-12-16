@@ -94,7 +94,7 @@
                 this.columnLoading = true;
                 const {code, data: {list}} = await this.$api.information.column.getList();
                 this.columnLoading = false;
-                if (code === '0') {
+                if (code === '200') {
                     this.columnList = changeKeys(list);
                 }
             },
@@ -139,7 +139,7 @@
                 this.$api.information.news.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code === '0') {
+                    if (code === '200') {
                         this.$emit('delete', record);
                     }
                 });
@@ -169,7 +169,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code === '0') {
+                            if (code === '200') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');

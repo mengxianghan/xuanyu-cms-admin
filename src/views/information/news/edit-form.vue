@@ -141,7 +141,7 @@
                 this.$api.information.news.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code === '0') {
+                    if (code === '200') {
                         this.$emit('delete', record);
                     }
                 });
@@ -174,7 +174,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code === '0') {
+                            if (code === '200') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');
@@ -205,7 +205,7 @@
                     has_pagination: '0'
                 }).then(({code, data: {list}}) => {
                     this.tagSpinning = false;
-                    if (code === '0') {
+                    if (code === '200') {
                         const tagList = list.map(item => ({
                             text: item.name,
                             value: item.name

@@ -40,7 +40,7 @@ const actions = {
                 username: username,
                 password: password
             }).then(({code, data}) => {
-                if (code === '0') {
+                if (code === '200') {
                     Vue.ls.set('userInfo', data);
                     dispatch('asyncRoutes/generateRoutes', null, {root: true}).then(() => {
                         const menu = rootState.asyncRoutes.menu;

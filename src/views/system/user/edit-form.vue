@@ -120,7 +120,7 @@
                     has_pagination: '0'
                 });
                 this.roleLoading = false;
-                if (code === '0') {
+                if (code === '200') {
                     this.roleList = list;
                 }
             },
@@ -134,7 +134,7 @@
                     has_pagination: '0'
                 });
                 this.postLoading = false;
-                if (code === '0') {
+                if (code === '200') {
                     this.postList = list;
                 }
             },
@@ -182,7 +182,7 @@
                 this.$api.system.user.delete({
                     id: record.id
                 }).then(({code}) => {
-                    if (code === '0') {
+                    if (code === '200') {
                         this.$emit('delete', record);
                     }
                 });
@@ -208,7 +208,7 @@
                             sort: values.sort
                         }).then(({code}) => {
                             this.confirmLoading = false;
-                            if (code === '0') {
+                            if (code === '200') {
                                 this.reset();
                                 this.toggleModal();
                                 this.$emit('ok');
