@@ -5,10 +5,10 @@
                    type="flex">
                 <a-col :md="5" :xs="24">
                     <a-menu mode="inline"
-                            :defaultSelectedKeys="['0']"
-                            :open-keys.sync="openKeys"
+                            :selectedKeys="selectedKeys"
+                            @click="handleMenuClick"
                             class="log-menu">
-                        <a-menu-item key="0">全部日志</a-menu-item>
+                        <a-menu-item key="">全部日志</a-menu-item>
                         <a-menu-item key="1">登录日志</a-menu-item>
                         <a-menu-item key="2">操作日志</a-menu-item>
                         <a-menu-item key="3">异常日志</a-menu-item>
@@ -36,16 +36,8 @@
             dataIndex: 'name'
         },
         {
-            title: '请求接口',
+            title: '接口',
             dataIndex: 'api'
-        },
-        {
-            title: '参数',
-            dataIndex: 'params'
-        },
-        {
-            title: '浏览器',
-            dataIndex: 'browser'
         },
         {
             title: 'IP',
@@ -60,7 +52,7 @@
         data() {
             return {
                 columns,
-                openKeys: ['0'],
+                selectedKeys: [''],
                 list: [],
                 pagination: {
                     showSizeChanger: true
@@ -79,7 +71,8 @@
                 this.loading = true;
                 this.$api.system.log.getList({
                     current_page: this.pagination.current,
-                    page_size: this.pagination.pageSize
+                    page_size: this.pagination.pageSize,
+                    type: this.selectedKeys[0] || ''
                 }).then(({code, data: {list, total}}) => {
                     this.loading = false;
                     if (code === '200') {
@@ -103,6 +96,10 @@
                     current: pagination.current,
                     pageSize: pagination.pageSize
                 };
+                this.getList();
+            },
+            handleMenuClick({key}) {
+                this.selectedKeys = [key];
                 this.getList();
             }
         }
