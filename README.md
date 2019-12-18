@@ -35,6 +35,7 @@ Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/m
   - 用户管理
   - 部门管理
   - 岗位管理
+  - 系统日志 :fire:
 - 信息管理
   - 栏目管理
   - 模版管理
@@ -91,6 +92,15 @@ npm run build
 白名单 `whiteList`  
 
 ## 更新日志  
+1.0.2
+`2019-12-18`  
+新增 `DescriptionList` 描述列表组件  
+新增系统日志  
+优化登录日志，与系统日志合并  
+优化请求响应数据，将请求成功时返回的状态码改为200，防止与Exception的默认状态码冲突  
+修复配置信息每次加载页面时都重置的问题  
+修复菜单超出屏幕高度后没有滚动条的问题  
+
 1.0.1  
 `2019-12-10`  
 新增 `Upload` 上传组件    
