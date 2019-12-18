@@ -22,14 +22,21 @@
                              row-key="id"
                              size="middle"
                              @change="handleTableChange">
+                        <template slot="operation" slot-scope="text,record">
+                            <a @click="$refs.detailModal.handleDetail(record)">详情</a>
+                        </template>
                     </a-table>
                 </a-col>
             </a-row>
         </a-card>
+
+        <detail-modal ref="detailModal"></detail-modal>
     </div>
 </template>
 
 <script>
+    import DetailModal from './detail-modal';
+
     const columns = [
         {
             title: '用户名',
@@ -46,9 +53,17 @@
         {
             title: '时间',
             dataIndex: 'create_time'
+        },
+        {
+            title: '操作',
+            dataIndex: 'operation',
+            scopedSlots: {customRender: 'operation'}
         }
     ];
     export default {
+        components: {
+            DetailModal
+        },
         data() {
             return {
                 columns,
