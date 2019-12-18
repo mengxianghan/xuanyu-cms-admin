@@ -6,7 +6,10 @@
 
 xuanyu CMS是一款前后端分离快速后台开发框架，前端基于vue-ant-design，后端基于codeigniter轻量级php框架开发
 
-后端代码请移步至
+前端  
+Github地址：[https://github.com/mengxianghan/xuanyu-cms-front](https://github.com/mengxianghan/xuanyu-cms-front)  
+码云地址：[https://gitee.com/1056811341/xuanyu-cms-front](https://gitee.com/1056811341/xuanyu-cms-front)  
+后端  
 Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/mengxianghan/xuanyu-cms)  
 码云地址：[https://gitee.com/1056811341/xuanyu-cms](https://gitee.com/1056811341/xuanyu-cms)
 
@@ -92,7 +95,7 @@ npm run build
 白名单 `whiteList`  
 
 ## 更新日志  
-1.0.2
+1.0.2  
 `2019-12-18`  
 新增 `DescriptionList` 描述列表组件  
 新增系统日志  
