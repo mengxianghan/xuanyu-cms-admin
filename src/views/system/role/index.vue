@@ -36,7 +36,7 @@
             </a-table>
         </a-card>
 
-        <edit-form ref="editForm" @ok="onOk" @delete="onDelete"></edit-form>
+        <edit-form ref="editForm" @complete="onComplete"></edit-form>
         <auth-form ref="authForm"></auth-form>
     </div>
 </template>
@@ -123,16 +123,9 @@
                 this.getList();
             },
             /**
-             * 确认
+             * 完成
              */
-            onOk() {
-                this.getList();
-            },
-            /**
-             * 确认
-             * @param record
-             */
-            onDelete(record) {
+            onComplete() {
                 this.getList();
             }
         }

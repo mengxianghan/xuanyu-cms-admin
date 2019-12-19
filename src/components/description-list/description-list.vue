@@ -49,7 +49,7 @@
             margin-bottom: 16px;
         }
 
-        /deep/ .term {
+        /deep/ .label {
             color: rgba(0, 0, 0, .85);
             display: table-cell;
             line-height: 20px;
@@ -88,13 +88,13 @@
                 margin-bottom: 12px;
             }
 
-            /deep/ .term, .content {
+            /deep/ .label, .content {
                 padding-bottom: 8px;
             }
         }
 
         &.large {
-            /deep/ .term, .content {
+            /deep/ .label, .content {
                 padding-bottom: 16px;
             }
 
@@ -104,11 +104,11 @@
         }
 
         &.vertical {
-            .term {
+            .label {
                 padding-bottom: 8px;
             }
 
-            /deep/ .term, .content {
+            /deep/ .label, .content {
                 display: block;
             }
         }

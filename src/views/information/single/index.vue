@@ -5,7 +5,7 @@
                 <a-card :bordered="false">
                     <x-infor-column ref="informationColumn"
                                     @select="handleSelect"
-                                    @complete="onComplete"
+                                    @complete="onInfoColumnComplete"
                                     :selected-keys="[currentColumn.id]"></x-infor-column>
                 </a-card>
             </a-col>
@@ -114,7 +114,7 @@
              * 栏目加载完成
              * @param treeData
              */
-            onComplete({treeData}) {
+            onInfoColumnComplete({treeData}) {
                 const currentColumn = this.$refs.informationColumn.getFirstValidColumn(treeData);
                 if (currentColumn) {
                     this.$set(this.currentColumn, 'id', currentColumn.value);

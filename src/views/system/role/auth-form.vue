@@ -153,6 +153,7 @@
                         this.reset();
                         this.toggleModal();
                         this.$emit('ok');
+                        this.$emit('complete');
                     }
                 });
             },

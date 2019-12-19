@@ -69,7 +69,7 @@
                 </a-card>
             </a-col>
         </a-row>
-        <edit-form ref="editForm" @ok="onOk" @delete="onDelete"></edit-form>
+        <edit-form ref="editForm" @complete="onComplete"></edit-form>
         <dict-dir-form ref="dictDirForm" @ok="onDictDirOk" @delete="onDictDirDelete"></dict-dir-form>
     </div>
 </template>
@@ -233,16 +233,9 @@
                 }
             },
             /**
-             * 确认
+             * 完成
              */
-            onOk() {
-                this.getList();
-            },
-            /**
-             * 删除
-             * @param record
-             */
-            onDelete(record) {
+            onComplete() {
                 this.getList();
             },
             /**

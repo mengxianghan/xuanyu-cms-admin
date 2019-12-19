@@ -4,8 +4,8 @@
             <a-col :md="5" :xs="24">
                 <a-card :bordered="false">
                     <x-infor-column ref="informationColumn"
-                                          :selected-keys="selectedKeys"
-                                          @select="handleSelect"></x-infor-column>
+                                    :selected-keys="selectedKeys"
+                                    @select="handleSelect"></x-infor-column>
                 </a-card>
             </a-col>
             <a-col :md="19" :xs="24">
@@ -62,7 +62,7 @@
             </a-col>
         </a-row>
 
-        <edit-form ref="editForm" @ok="onOk" @delete="onDelete"></edit-form>
+        <edit-form ref="editForm" @complete="onComplete"></edit-form>
     </div>
 </template>
 
@@ -172,18 +172,11 @@
                 this.getList();
             },
             /**
-             * 确认
+             * 完成
              */
-            onOk() {
+            onComplete() {
                 this.getList();
             },
-            /**
-             * 删除
-             * @param record
-             */
-            onDelete(record) {
-                this.getList();
-            }
         }
     };
 </script>

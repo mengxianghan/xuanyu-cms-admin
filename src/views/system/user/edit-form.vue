@@ -184,6 +184,7 @@
                 }).then(({code}) => {
                     if (code === '200') {
                         this.$emit('delete', record);
+                        this.$emit('complete', record);
                     }
                 });
             },
@@ -211,7 +212,8 @@
                             if (code === '200') {
                                 this.reset();
                                 this.toggleModal();
-                                this.$emit('ok');
+                                this.$emit('ok', values);
+                                this.$emit('complete', values);
                             }
                         });
                     }

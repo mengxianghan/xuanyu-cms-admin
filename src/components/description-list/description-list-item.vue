@@ -1,6 +1,6 @@
 <template>
     <a-col v-bind="span">
-        <div class="term">{{label}}</div>
+        <div class="label">{{label}}</div>
         <div class="content"><slot></slot></div>
     </a-col>
 </template>
