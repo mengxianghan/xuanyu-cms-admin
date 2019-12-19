@@ -1,6 +1,7 @@
 import system from './system';
 import information from './information';
 import login from './login';
+import wechat from './wechat';
 
 const api = {
     vm: {},
@@ -13,8 +14,10 @@ const api = {
         const api = {
             system,
             information,
-            login
+            login,
+            wechat
         };
+
         Vue.api = api;
         Object.defineProperty(Vue.prototype, '$api', {
             get() {
