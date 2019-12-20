@@ -6,13 +6,10 @@
                     <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">新增栏目</a-button>
                 </a-form-item>
             </a-form>
-            <a-spin :spinning="!list.length">
-                <div>
-                    <a-table :columns="columns"
+            <a-table :columns="columns"
                              :data-source="list"
                              :loading="loading"
                              :pagination="false"
-                             default-expand-all-rows
                              row-key="id"
                              size="middle"
                              v-if="list.length">
@@ -36,8 +33,6 @@
                             </span>
                         </template>
                     </a-table>
-                </div>
-            </a-spin>
         </a-card>
 
         <edit-form ref="editForm" @complete="onComplete"></edit-form>
