@@ -8,6 +8,7 @@
                      :data-source="list"
                      :loading="loading"
                      :pagination="false"
+                     default-expand-all-rows
                      row-key="id"
                      size="middle">
                 <template slot="status" slot-scope="text">
@@ -71,8 +72,8 @@
         data() {
             return {
                 columns,
-                list: [],
-                loading: false
+                loading: false,
+                list: []
             };
         },
         created() {

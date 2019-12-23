@@ -5,7 +5,7 @@
                     default-expand-all
                     :selected-keys="selectedKeys"
                     @select="handleSelect"
-                    v-if="treeData.length"></a-tree>
+                    v-if="!spinning"></a-tree>
         </div>
     </a-spin>
 </template>
@@ -44,7 +44,6 @@
                 const {code, data: {list}} = await this.$api.information.column.getList({
                     status: '1'
                 });
-                this.spinning = false;
                 if (code === '200') {
                     const treeData = changeKeys(list, {
                         title: 'name',
@@ -62,6 +61,9 @@
                     this.treeData = treeData;
                     this.$emit('complete', {data: list, treeData: treeData});
                 }
+                this.$nextTick(() => {
+                    this.spinning = false;
+                });
             },
             /**
              * 获取第一个有效栏目

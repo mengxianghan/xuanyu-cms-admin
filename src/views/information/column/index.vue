@@ -7,32 +7,31 @@
                 </a-form-item>
             </a-form>
             <a-table :columns="columns"
-                             :data-source="list"
-                             :loading="loading"
-                             :pagination="false"
-                             row-key="id"
-                             size="middle"
-                             v-if="list.length">
-                        <template slot="status" slot-scope="text">
-                            <x-status :code="text"></x-status>
-                        </template>
-                        <template slot="operation" slot-scope="text,record">
-                            <span v-action:insertNext>
-                                <a @click="$refs.editForm.handleInsert(record)">新增下级</a>
-                                <a-divider type="vertical"></a-divider>
-                            </span>
-                            <span v-action:edit>
-                                <a @click="$refs.editForm.handleEdit(record)">编辑</a>
-                                <a-divider type="vertical"></a-divider>
-                            </span>
-                            <span v-action:delete>
-                                <a-popconfirm title="确认删除此数据?"
-                                              @confirm="$refs.editForm.handleDelete(record)">
-                                    <a>删除</a>
-                                </a-popconfirm>
-                            </span>
-                        </template>
-                    </a-table>
+                     :data-source="list"
+                     :loading="loading"
+                     :pagination="false"
+                     row-key="id"
+                     size="middle">
+                <template slot="status" slot-scope="text">
+                    <x-status :code="text"></x-status>
+                </template>
+                <template slot="operation" slot-scope="text,record">
+                    <span v-action:insertNext>
+                        <a @click="$refs.editForm.handleInsert(record)">新增下级</a>
+                        <a-divider type="vertical"></a-divider>
+                    </span>
+                    <span v-action:edit>
+                        <a @click="$refs.editForm.handleEdit(record)">编辑</a>
+                        <a-divider type="vertical"></a-divider>
+                    </span>
+                    <span v-action:delete>
+                        <a-popconfirm title="确认删除此数据?"
+                                      @confirm="$refs.editForm.handleDelete(record)">
+                            <a>删除</a>
+                        </a-popconfirm>
+                    </span>
+                </template>
+            </a-table>
         </a-card>
 
         <edit-form ref="editForm" @complete="onComplete"></edit-form>

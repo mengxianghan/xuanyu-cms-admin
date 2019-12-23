@@ -3,7 +3,7 @@
         <a-row :gutter="16">
             <a-col :md="5" :xs="24">
                 <a-card :bordered="false">
-                    <a-spin :spinning="!treeData.length">
+                    <a-spin :spinning="dictDirLoading">
                         <div>
                             <a-tree :tree-data="treeData"
                                     default-expand-all
@@ -114,6 +114,7 @@
                 },
                 loading: false,
                 dictDirList: [],
+                dictDirLoading:false,
                 dictDirId: ''
             };
         },

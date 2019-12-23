@@ -3,12 +3,12 @@
         <a-row :gutter="16">
             <a-col :md="5" :xs="24">
                 <a-card :bordered="false">
-                    <a-spin :spinning="!treeData.length">
+                    <a-spin :spinning="deptLoading">
                         <div>
                             <a-tree :tree-data="treeData"
                                     default-expand-all
                                     @select="handleSelect"
-                                    v-if="treeData.length"></a-tree>
+                                    v-if="!deptLoading"></a-tree>
                         </div>
                     </a-spin>
                 </a-card>
@@ -100,6 +100,7 @@
                 },
                 loading: false,
                 deptList: [],
+                deptLoading: false,
                 deptId: ''
             };
         },
@@ -149,10 +150,12 @@
                 this.$api.system.dept.getList({
                     status: '1'
                 }).then(({code, data: {list}}) => {
-                    this.deptLoading = false;
                     if (code === '200') {
                         this.deptList = list;
                     }
+                    this.$nextTick(() => {
+                        this.deptLoading = false;
+                    });
                 }).catch(() => {
                     this.deptLoading = false;
                 });
