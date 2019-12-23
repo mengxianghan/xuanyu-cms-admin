@@ -88,19 +88,18 @@
              */
             treeData() {
                 return [{
-                    title: '主菜单',
+                    title: '无',
                     value: '0',
-                    key: '0',
-                    children: changeKeys(this.$parent.list, {
-                        title: "name",
-                        value: "id",
-                        key: "id",
-                        children: "children",
-                        disabled: (record) => {
-                            return this.disabledId.includes(record.id);
-                        }
-                    })
-                }];
+                    key: '0'
+                }, ...changeKeys(this.$parent.list, {
+                    title: "name",
+                    value: "id",
+                    key: "id",
+                    children: "children",
+                    disabled: (record) => {
+                        return this.disabledId.includes(record.id);
+                    }
+                })];
             }
         },
         watch: {
