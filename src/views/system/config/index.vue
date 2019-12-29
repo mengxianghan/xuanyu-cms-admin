@@ -169,6 +169,8 @@
                                 }
                                 this.$store.dispatch('config/setConfig');
                             }
+                        }, err => {
+                            this.loading = false;
                         });
                     }
                 });

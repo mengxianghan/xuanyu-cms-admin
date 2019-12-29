@@ -95,6 +95,8 @@
                             this.confirmLoading = false;
                         }, err => {
                             this.confirmLoading = false;
+                        }, err => {
+                            this.confirmLoading = false;
                         });
                     }
                 });

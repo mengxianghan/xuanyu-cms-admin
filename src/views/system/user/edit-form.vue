@@ -215,6 +215,8 @@
                                 this.$emit('ok', values);
                                 this.$emit('complete', values);
                             }
+                        }, err => {
+                            this.confirmLoading = false;
                         });
                     }
                 });

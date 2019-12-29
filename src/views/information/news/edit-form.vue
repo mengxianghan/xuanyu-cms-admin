@@ -181,7 +181,7 @@
                                 this.$emit('ok', values);
                                 this.$emit('complete', values);
                             }
-                        }, error => {
+                        }, err => {
                             this.confirmLoading = false;
                         });
                     }
