@@ -8,11 +8,10 @@
                 v-bind="formItemLayout">
             <a-form-item label="上级部门">
                 <a-tree-select :tree-data="treeData"
-                               v-decorator="['parent_id',{rules:[{required:true,message:'请选择上级部门'}]}]"
-                               tree-default-expand-all></a-tree-select>
+                               v-decorator="['parent_id',{rules:[{required:true,message:'请选择上级部门'}]}]"></a-tree-select>
             </a-form-item>
-            <a-form-item label="部门名称">
-                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入部门名称'}]}]"></a-input>
+            <a-form-item label="名称">
+                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入名称'}]}]"></a-input>
             </a-form-item>
             <a-form-item label="负责人">
                 <a-input v-decorator="['leader']"></a-input>
@@ -79,7 +78,7 @@
              */
             handleInsert(record) {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增部门';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record ? record.id : '0'
@@ -92,7 +91,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑部门';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.parent_id,

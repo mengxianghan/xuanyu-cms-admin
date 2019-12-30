@@ -48,7 +48,7 @@
 
     const columns = [
         {
-            title: '菜单名称',
+            title: '名称',
             dataIndex: 'name'
         },
         {

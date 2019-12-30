@@ -48,7 +48,7 @@
              */
             handleInsert() {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增账号';
             },
             /**
              * 编辑
@@ -56,7 +56,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑账号';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         name: record.name,

@@ -81,7 +81,7 @@
 
     const columns = [
         {
-            title: '字典名称',
+            title: '名称',
             dataIndex: 'name'
         },
         {

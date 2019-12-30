@@ -6,12 +6,12 @@
              @cancel="onCancel">
         <a-form :form="form"
                 v-bind="formItemLayout">
-            <a-form-item label="所属目录">
-                <a-tree-select v-decorator="['parent_id',{rules:[{required:true,message:'请选择所属目录'}]}]"
+            <a-form-item label="上级目录">
+                <a-tree-select v-decorator="['parent_id',{rules:[{required:true,message:'请选择上级目录'}]}]"
                                :tree-data="treeData"></a-tree-select>
             </a-form-item>
-            <a-form-item label="字典目录名称">
-                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入字典目录名称'}]}]"></a-input>
+            <a-form-item label="名称">
+                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入名称'}]}]"></a-input>
             </a-form-item>
             <a-form-item label="Key">
                 <a-input v-decorator="['key',{rules:[{required:true,message:'请输入Key'}]}]"></a-input>
@@ -64,7 +64,7 @@
              */
             handleInsert(record) {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增字典目录';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.parent_id
@@ -90,7 +90,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑字典目录';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.parent_id,

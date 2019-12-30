@@ -38,7 +38,7 @@
         },
         methods: {
             handleDetail(record) {
-                this.title = '详情';
+                this.title = '日志详情';
                 this.visible = true;
                 this.record = record;
             }

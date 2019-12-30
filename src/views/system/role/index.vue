@@ -47,7 +47,7 @@
 
     const columns = [
         {
-            title: '角色名称',
+            title: '名称',
             dataIndex: 'name'
         },
         {

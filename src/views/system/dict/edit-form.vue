@@ -67,7 +67,7 @@
              */
             handleInsert() {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增字典';
                 this.$nextTick(() => {
                     const dictDirId = this.$parent.dictDirId.split(',').length ? this.$parent.dictDirId.split(',')[0] : '';
                     this.form.setFieldsValue({
@@ -81,7 +81,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑字典';
                 this.dictDirKey = record.dict_dir_key;
                 this.$nextTick(() => {
                     this.form.setFieldsValue({

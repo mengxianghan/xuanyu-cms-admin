@@ -42,7 +42,7 @@
 
     const columns = [
         {
-            title: '部门名称',
+            title: '名称',
             dataIndex: 'name'
         },
         {

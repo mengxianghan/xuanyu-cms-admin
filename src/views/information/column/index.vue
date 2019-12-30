@@ -43,7 +43,7 @@
 
     const columns = [
         {
-            title: '栏目名称',
+            title: '名称',
             dataIndex: 'name'
         },
         {

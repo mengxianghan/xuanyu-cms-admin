@@ -38,7 +38,7 @@
 
     const columns = [
         {
-            title: '模板名称',
+            title: '名称',
             dataIndex: 'name'
         },
         {

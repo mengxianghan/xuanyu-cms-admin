@@ -30,8 +30,7 @@
                     <a-form-item label="所属栏目">
                         <a-tree-select v-decorator="['column_id',{rules:[{required:true,message:'请选择所属栏目'}]}]"
                                        :tree-data="columnTreeData"
-                                       :loading="columnLoading"
-                                       tree-default-expand-all></a-tree-select>
+                                       :loading="columnLoading"></a-tree-select>
                     </a-form-item>
                     <a-form-item label="缩略图">
                         <x-upload v-decorator="['thumb']"
@@ -104,7 +103,7 @@
              */
             handleInsert() {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增新闻';
             },
             /**
              * 编辑
@@ -112,7 +111,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑新闻';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         title: record.title,

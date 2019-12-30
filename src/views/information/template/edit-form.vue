@@ -6,14 +6,13 @@
              @cancel="onCancel">
         <a-form :form="form"
                 v-bind="formItemLayout">
-            <a-form-item label="模板名称">
-                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入模板名称'}]}]"></a-input>
+            <a-form-item label="名称">
+                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入名称'}]}]"></a-input>
             </a-form-item>
             <a-form-item label="视图">
                 <a-tree-select v-decorator="['menu_id',{rules:[{required:true,message:'请选择视图'}]}]"
                                :tree-data="menuList"
-                               :loading="menuLoading"
-                               tree-default-expand-all></a-tree-select>
+                               :loading="menuLoading"></a-tree-select>
             </a-form-item>
             <a-form-item label="状态">
                 <a-radio-group v-decorator="['status',{initialValue:'1'}]">
@@ -68,7 +67,7 @@
              */
             handleInsert() {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增模板';
             },
             /**
              * 编辑
@@ -76,7 +75,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑模板';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         name: record.name,

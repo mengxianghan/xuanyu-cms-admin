@@ -6,8 +6,8 @@
              @cancel="onCancel">
         <a-form :form="form"
                 v-bind="formItemLayout">
-            <a-form-item label="按钮名称">
-                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入按钮名称'}]}]"></a-input>
+            <a-form-item label="名称">
+                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入名称'}]}]"></a-input>
             </a-form-item>
             <a-form-item label="Key">
                 <a-input v-decorator="['key',{rules:[{required:true,message:'请输入Key'}]}]"></a-input>
@@ -39,7 +39,7 @@
              */
             handleInsert(record) {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增权限按钮';
             },
             /**
              * 编辑
@@ -47,7 +47,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑权限按钮';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         name: record.name,

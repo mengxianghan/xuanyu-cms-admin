@@ -8,8 +8,7 @@
                 v-bind="formItemLayout">
             <a-form-item label="上级栏目">
                 <a-tree-select :tree-data="treeData"
-                               v-decorator="['parent_id',{rules:[{required:true,message:'请选择上级栏目'}]}]"
-                               tree-default-expand-all></a-tree-select>
+                               v-decorator="['parent_id',{rules:[{required:true,message:'请选择上级栏目'}]}]"></a-tree-select>
             </a-form-item>
             <a-form-item label="栏目名称">
                 <a-input v-decorator="['name',{rules:[{required:true,message:'请输入栏目名称'}]}]"></a-input>
@@ -102,7 +101,7 @@
              */
             handleInsert(record) {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增栏目';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record ? record.id : '0'
@@ -115,7 +114,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑栏目';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.parent_id,

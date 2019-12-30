@@ -8,11 +8,10 @@
                 v-bind="formItemLayout">
             <a-form-item label="上级菜单">
                 <a-tree-select :tree-data="treeData"
-                               v-decorator="['parent_id',{rules:[{required:true,message:'请选择上级菜单'}]}]"
-                               tree-default-expand-all></a-tree-select>
+                               v-decorator="['parent_id',{rules:[{required:true,message:'请选择上级菜单'}]}]"></a-tree-select>
             </a-form-item>
-            <a-form-item label="菜单名称">
-                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入菜单名称'}]}]"></a-input>
+            <a-form-item label="名称">
+                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入名称'}]}]"></a-input>
             </a-form-item>
             <a-form-item label="图标">
                 <a-input v-decorator="['icon']"></a-input>
@@ -126,7 +125,7 @@
              */
             handleInsert(record) {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增菜单';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record ? record.id : '0'
@@ -139,7 +138,7 @@
             handleCopy(record) {
                 this.handleEdit(record);
                 this.record = {};
-                this.title = '复制';
+                this.title = '复制菜单';
             },
             /**
              * 编辑
@@ -147,7 +146,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑菜单';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.parent_id,

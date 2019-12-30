@@ -24,7 +24,6 @@
             </a-form-item>
             <a-form-item label="部门">
                 <a-tree-select :tree-data="treeData"
-                               tree-default-expand-all
                                v-decorator="['dept_id']"></a-tree-select>
             </a-form-item>
             <a-form-item label="岗位">
@@ -111,7 +110,7 @@
                 callback();
             },
             /**
-             * 获取角色
+             * 获取角色列表
              */
             async getRoleList() {
                 this.roleLoading = true;
@@ -125,7 +124,7 @@
                 }
             },
             /**
-             * 获取岗位
+             * 获取岗位列表
              */
             async getPostList() {
                 this.postLoading = true;
@@ -143,7 +142,7 @@
              */
             handleInsert() {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增用户';
                 this.$nextTick(() => {
                     const deptId = this.$parent.deptId.split(',').length ? this.$parent.deptId.split(',')[0] : '';
                     this.isRequiredPassword = true;
@@ -158,7 +157,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑用户';
                 this.$nextTick(() => {
                     this.isRequiredPassword = false;
                     this.form.setFieldsValue({

@@ -6,8 +6,8 @@
              @cancel="onCancel">
         <a-form :form="form"
                 v-bind="formItemLayout">
-            <a-form-item label="角色名称">
-                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入角色名称'}]}]"></a-input>
+            <a-form-item label="名称">
+                <a-input v-decorator="['name',{rules:[{required:true,message:'请输入名称'}]}]"></a-input>
             </a-form-item>
             <a-form-item label="状态">
                 <a-radio-group v-decorator="['status',{initialValue:'1'}]"
@@ -45,7 +45,7 @@
              */
             handleInsert() {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增角色';
             },
             /**
              * 编辑
@@ -53,7 +53,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑角色';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         name: record.name,

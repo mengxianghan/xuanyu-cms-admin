@@ -29,8 +29,7 @@
                     <a-form-item label="所属栏目">
                         <a-tree-select v-decorator="['column_id',{rules:[{required:true,message:'请选择所属栏目'}]}]"
                                        :tree-data="columnList"
-                                       :loading="columnLoading"
-                                       tree-default-expand-all></a-tree-select>
+                                       :loading="columnLoading"></a-tree-select>
                     </a-form-item>
                     <a-form-item label="作者">
                         <a-input v-decorator="['author']"></a-input>
@@ -103,7 +102,7 @@
              */
             handleInsert() {
                 this.toggleModal();
-                this.title = '新增';
+                this.title = '新增案例';
             },
             /**
              * 编辑
@@ -111,7 +110,7 @@
             handleEdit(record) {
                 this.toggleModal();
                 this.record = record;
-                this.title = '编辑';
+                this.title = '编辑案例';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         title: record.title,
