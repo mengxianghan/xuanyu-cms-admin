@@ -2,7 +2,7 @@ import Vue from 'vue';
 import router from '@/router';
 import axios from 'axios';
 import qs from 'qs';
-import {message} from 'ant-design-vue';
+import {message} from 'ant-design-vue/es';
 
 const server = axios.create({
     baseURL: process.env.BASE_URL,

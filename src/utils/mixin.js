@@ -18,6 +18,16 @@ export const form = {
                     offset: 5
                 }
             },
+            formItemLayoutGoods: {
+                labelCol: {
+                    sm: 7,
+                    lg: 7
+                },
+                wrapperCol: {
+                    sm: 17,
+                    lg: 10
+                }
+            },
             form: this.$form.createForm(this),
             confirmLoading: false
         };

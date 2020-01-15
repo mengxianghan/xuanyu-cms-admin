@@ -21,6 +21,10 @@ module.exports = {
             ? config.build.assetsPublicPath
             : config.dev.assetsPublicPath
     },
+    externals: {
+        'ant-design-vue': 'Antd',
+        'tinymce': 'tinymce'
+    },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {

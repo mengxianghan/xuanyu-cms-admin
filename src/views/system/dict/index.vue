@@ -14,25 +14,24 @@
                                         <span>{{value}}</span>
                                         <a-menu slot="overlay"
                                                 @click="handleDirClick({id:key,name:value,key:dirKey,parent_id:parentId,sort},$event)">
-                                            <a-menu-item key="insert" v-if="parentId !== '0'"
+                                            <a-menu-item key="insert"
                                                          v-action:insert>新增同级
                                             </a-menu-item>
                                             <a-menu-item key="insertNext"
                                                          v-action:insertNext>新增下级
                                             </a-menu-item>
-                                            <template v-if="parentId !== '0'">
-                                                <a-menu-item key="edit"
-                                                             v-action:edit>编辑
-                                                </a-menu-item>
-                                                <a-menu-divider/>
-                                                <a-menu-item key="delete"
-                                                             v-action:delete><span style="color:#ff4d4f;">删除</span>
-                                                </a-menu-item>
-                                            </template>
+                                            <a-menu-item key="edit"
+                                                         v-action:edit>编辑
+                                            </a-menu-item>
+                                            <a-menu-divider/>
+                                            <a-menu-item key="delete"
+                                                         v-action:delete><span style="color:#ff4d4f;">删除</span>
+                                            </a-menu-item>
                                         </a-menu>
                                     </a-dropdown>
                                 </template>
                             </a-tree>
+                            <a-button block @click="$refs.dictDirForm.handleInsert()" v-else>新增字典目录</a-button>
                         </div>
                     </a-spin>
                 </a-card>
@@ -114,7 +113,7 @@
                 },
                 loading: false,
                 dictDirList: [],
-                dictDirLoading:false,
+                dictDirLoading: false,
                 dictDirId: ''
             };
         },

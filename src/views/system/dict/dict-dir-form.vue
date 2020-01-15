@@ -47,15 +47,22 @@
              * 上级目录
              */
             treeData() {
-                return changeKeys(this.$parent.dictDirList, {
-                    title: "name",
-                    value: "id",
-                    key: "id",
-                    children: "children",
-                    disabled: (record) => {
-                        return this.disabledId.includes(record.id);
-                    }
-                });
+                return [
+                    {
+                        title: '无',
+                        value: '0',
+                        key: '0'
+                    },
+                    ...changeKeys(this.$parent.dictDirList, {
+                        title: "name",
+                        value: "id",
+                        key: "id",
+                        children: "children",
+                        disabled: (record) => {
+                            return this.disabledId.includes(record.id);
+                        }
+                    })
+                ];
             }
         },
         methods: {
@@ -67,7 +74,7 @@
                 this.title = '新增字典目录';
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
-                        parent_id: record.parent_id
+                        parent_id: record ? record.parent_id : '0'
                     });
                 });
             },

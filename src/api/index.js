@@ -2,6 +2,7 @@ import system from './system';
 import information from './information';
 import login from './login';
 import wechat from './wechat';
+import mall from './mall';
 
 const api = {
     vm: {},
@@ -15,7 +16,8 @@ const api = {
             system,
             information,
             login,
-            wechat
+            wechat,
+            mall
         };
 
         Vue.api = api;
