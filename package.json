@@ -22,7 +22,7 @@
     "nprogress": "^0.2.0",
     "qs": "^6.9.0",
     "sass-loader": "^7.1.0",
-    "tinymce": "^5.1.2",
+    "tinymce": "^5.1.4",
     "vue": "^2.5.2",
     "vue-ls": "^3.2.1",
     "vue-router": "^3.0.1",
