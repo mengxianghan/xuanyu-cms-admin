@@ -29,28 +29,28 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
+    import {form} from '@/utils/mixin'
 
     export default {
         mixins: [form],
         data() {
-            return {};
+            return {}
         },
         methods: {
             /**
              * 新增
              */
             handleInsert() {
-                this.toggleModal();
-                this.title = '新增品牌';
+                this.toggleModal()
+                this.title = '新增品牌'
             },
             /**
              * 编辑
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.title = '编辑品牌';
+                this.toggleModal()
+                this.record = record
+                this.title = '编辑品牌'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         name: record.name,
@@ -58,8 +58,8 @@
                         description: record.description,
                         status: record.status,
                         sort: record.sort
-                    });
-                });
+                    })
+                })
             },
             /**
              * 删除
@@ -70,10 +70,10 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.$emit('delete', record);
-                        this.$emit('complete', record);
+                        this.$emit('delete', record)
+                        this.$emit('complete', record)
                     }
-                });
+                })
             },
             /**
              * 确认
@@ -81,7 +81,7 @@
             onOk() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.confirmLoading = true;
+                        this.confirmLoading = true
                         this.$api.mall.brand.submit({
                             id: this.record.id,
                             name: values.name,
@@ -90,29 +90,29 @@
                             status: values.status,
                             sort: values.sort
                         }).then(({code}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                             if (code === '200') {
-                                this.reset();
-                                this.toggleModal();
-                                this.$emit('ok', values);
-                                this.$emit('complete', values);
+                                this.reset()
+                                this.toggleModal()
+                                this.$emit('ok', values)
+                                this.$emit('complete', values)
                             }
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

@@ -42,7 +42,7 @@ export const constantRoutesMap = [
             hidden: true
         }
     }
-];
+]
 
 /**
  * 找到页面的路由
@@ -53,9 +53,9 @@ export const notFoundRouter = {
     meta: {
         hidden: true
     },
-};
+}
 
 /**
  * 免登录白名单
  */
-export const whiteList = ['login'];
+export const whiteList = ['login']

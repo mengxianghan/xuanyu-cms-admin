@@ -47,7 +47,7 @@
 </template>
 
 <script>
-    import {mapState, mapActions} from 'vuex';
+    import {mapState, mapActions} from 'vuex'
 
     export default {
         name: "login",
@@ -55,9 +55,15 @@
             return {
                 form: this.$form.createForm(this),
                 loading: false
-            };
+            }
         },
         created() {
+        },
+        mounted() {
+            this.form.setFieldsValue({
+                username: 'admin',
+                password: '123456'
+            })
         },
         computed: {
             ...mapState({
@@ -74,20 +80,20 @@
             handleLogin() {
                 this.form.validateFieldsAndScroll((errors, values) => {
                     if (!errors) {
-                        this.loading = true;
+                        this.loading = true
                         this.login({
                             username: values.username,
                             password: values.password
                         }).then(() => {
-                            this.loading = false;
+                            this.loading = false
                         }, err => {
-                            this.loading = false;
-                        });
+                            this.loading = false
+                        })
                     }
-                });
+                })
             }
         },
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

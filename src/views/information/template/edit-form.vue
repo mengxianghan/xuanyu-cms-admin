@@ -28,8 +28,8 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
-    import {changeKeys} from '@/utils/util';
+    import {form} from '@/utils/mixin'
+    import {changeKeys} from '@/utils/util'
 
     export default {
         mixins: [form],
@@ -37,14 +37,14 @@
             return {
                 menuList: [],
                 menuLoading: false
-            };
+            }
         },
         created() {
         },
         watch: {
             visible(val) {
                 if (val && !this.menuList.length) {
-                    this.getMenuList();
+                    this.getMenuList()
                 }
             }
         },
@@ -53,37 +53,37 @@
              * 获取菜单列表
              */
             async getMenuList() {
-                this.menuLoading = true;
+                this.menuLoading = true
                 const {code, data: {list}} = await this.$api.system.menu.getList({
                     status: '1'
-                });
-                this.menuLoading = false;
+                })
+                this.menuLoading = false
                 if (code === '200') {
-                    this.menuList = changeKeys(list);
+                    this.menuList = changeKeys(list)
                 }
             },
             /**
              * 新增
              */
             handleInsert() {
-                this.toggleModal();
-                this.title = '新增模板';
+                this.toggleModal()
+                this.title = '新增模板'
             },
             /**
              * 编辑
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.title = '编辑模板';
+                this.toggleModal()
+                this.record = record
+                this.title = '编辑模板'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         name: record.name,
                         menu_id: record.menu_id,
                         status: record.status,
                         sort: record.sort
-                    });
-                });
+                    })
+                })
             },
             /**
              * 删除
@@ -94,10 +94,10 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.$emit('delete', record);
-                        this.$emit('complete', record);
+                        this.$emit('delete', record)
+                        this.$emit('complete', record)
                     }
-                });
+                })
             },
             /**
              * 确认
@@ -105,7 +105,7 @@
             onOk() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.confirmLoading = true;
+                        this.confirmLoading = true
                         this.$api.information.template.submit({
                             id: this.record.id,
                             name: values.name,
@@ -113,29 +113,29 @@
                             status: values.status,
                             sort: values.sort
                         }).then(({code}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                             if (code === '200') {
-                                this.reset();
-                                this.toggleModal();
-                                this.$emit('ok');
-                                this.$emit('complete', values);
+                                this.reset()
+                                this.toggleModal()
+                                this.$emit('ok')
+                                this.$emit('complete', values)
                             }
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

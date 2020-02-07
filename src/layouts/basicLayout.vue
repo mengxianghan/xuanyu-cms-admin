@@ -66,13 +66,13 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState} from 'vuex'
 
     export default {
         data() {
             return {
                 collapsed: false
-            };
+            }
         },
         computed: {
             ...mapState({
@@ -89,14 +89,14 @@
                 this.$confirm({
                     title: '注销登录？',
                     onOk: () => {
-                        this.$ls.clear();
-                        const {href} = this.$router.resolve({name: 'login'});
-                        location.href = href;
+                        this.$ls.clear()
+                        const {href} = this.$router.resolve({name: 'login'})
+                        location.href = href
                     }
-                });
+                })
             }
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

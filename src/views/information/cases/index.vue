@@ -67,8 +67,8 @@
 </template>
 
 <script>
-    import EditForm from './edit-form';
-    import {changeKeys, getFieldsValue} from '@/utils/util';
+    import EditForm from './edit-form'
+    import {changeKeys, getFieldsValue} from '@/utils/util'
 
     const columns = [
         {
@@ -93,7 +93,7 @@
             dataIndex: 'operation',
             scopedSlots: {customRender: 'operation'}
         }
-    ];
+    ]
     export default {
         name: "index",
         components: {
@@ -110,34 +110,34 @@
                     showSizeChanger: true
                 },
                 loading: false
-            };
+            }
         },
         created() {
-            this.getList();
+            this.getList()
         },
         methods: {
             /**
              * 获取列表
              */
             getList() {
-                this.loading = true;
+                this.loading = true
                 this.$api.information.news.getList({
                     search: JSON.stringify(this.searchForm),
                     column_id: this.columnId,
                     current_page: this.pagination.current,
                     page_size: this.pagination.pageSize
                 }).then(({code, data: {list, total}}) => {
-                    this.loading = false;
+                    this.loading = false
                     if (code === '200') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
-                        };
-                        this.list = list;
+                        }
+                        this.list = list
                     }
                 }).catch(() => {
-                    this.loading = false;
-                });
+                    this.loading = false
+                })
             },
             /**
              * 分页
@@ -148,8 +148,8 @@
                     ...this.pagination,
                     current: pagination.current,
                     pageSize: pagination.pageSize
-                };
-                this.getList();
+                }
+                this.getList()
             },
             /**
              * 选择栏目
@@ -160,25 +160,25 @@
                     parentField: 'parent_id',
                     parentId: selectedKeys[0] || '',
                     field: 'id'
-                }).join(',');
-                this.columnId = columnId;
-                this.selectedKeys = selectedKeys;
-                this.getList();
+                }).join(',')
+                this.columnId = columnId
+                this.selectedKeys = selectedKeys
+                this.getList()
             },
             /**
              * 搜索
              */
             handleSearch() {
-                this.getList();
+                this.getList()
             },
             /**
              * 完成
              */
             onComplete() {
-                this.getList();
+                this.getList()
             },
         }
-    };
+    }
 </script>
 
 <style scoped>

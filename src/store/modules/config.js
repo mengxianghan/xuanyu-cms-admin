@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 const state = {
     configComplete: false,
@@ -6,15 +6,15 @@ const state = {
     uploadDir: '',
     allowedFileType: '',
     allowedFileSize: 0
-};
+}
 
 const mutations = {
     SET_CONFIG(state, payload = {}) {
         for (let key in payload) {
-            state[key] = payload[key];
+            state[key] = payload[key]
         }
     }
-};
+}
 
 const actions = {
     /**
@@ -26,7 +26,7 @@ const actions = {
     async setConfig({commit, rootState}) {
         const {code, data} = await Vue.api.system.config.getData({
             site: rootState.app.site
-        });
+        })
         if (code === '200') {
             commit('SET_CONFIG', {
                 configComplete: true,
@@ -34,14 +34,14 @@ const actions = {
                 uploadDir: data.upload_dir,
                 allowedFileType: data.allowed_file_type,
                 allowedFileSize: Number(data.allowed_file_size)
-            });
+            })
         }
     }
-};
+}
 
 export default {
     namespaced: true,
     state,
     mutations,
     actions
-};
+}

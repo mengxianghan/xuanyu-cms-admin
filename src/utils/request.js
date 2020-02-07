@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import router from '@/router';
-import axios from 'axios';
-import qs from 'qs';
-import {message} from 'ant-design-vue/es';
+import Vue from 'vue'
+import router from '@/router'
+import axios from 'axios'
+import qs from 'qs'
+import {message} from 'ant-design-vue/es'
 
 const server = axios.create({
     baseURL: process.env.BASE_URL,
@@ -11,41 +11,41 @@ const server = axios.create({
     headers: {
         'content-type': 'application/x-www-form-urlencoded'
     }
-});
+})
 
 //请求拦截器
 server.interceptors.request.use(req => {
-    const userInfo = Vue.ls.get('userInfo');
-    const token = userInfo instanceof Object ? userInfo.token : '';
-    const menu = router.currentRoute.meta.id || '';
+    const userInfo = Vue.ls.get('userInfo')
+    const token = userInfo instanceof Object ? userInfo.token : ''
+    const menu = router.currentRoute.meta.id || ''
     if (token) {
         req.headers = {
             ...req.headers,
             token: token,
             menu: menu
-        };
+        }
     }
-    return req;
+    return req
 }, err => {
-    return Promise.reject(err);
-});
+    return Promise.reject(err)
+})
 
 //响应拦截器
 server.interceptors.response.use(res => {
     if (res.data.message) {
         if (res.data.message) {
             if (res.data.code === '200') {
-                message.success(`${res.data.message}`);
+                message.success(`${res.data.message}`)
             } else {
-                message.warning(`${res.data.message}，code：${res.data.code}`);
+                message.warning(`${res.data.message}，code：${res.data.code}`)
             }
         }
     }
-    return res;
+    return res
 }, err => {
-    message.error(`err：${err.message}`);
-    return Promise.reject(err);
-});
+    message.error(`err：${err.message}`)
+    return Promise.reject(err)
+})
 
 const request = {
     /**
@@ -61,13 +61,13 @@ const request = {
                 url: url,
                 data: qs.stringify(data)
             }).then(res => {
-                resolve(res.data);
+                resolve(res.data)
             }, err => {
-                reject(err);
+                reject(err)
             }).catch(err => {
-                reject(err);
-            });
-        });
+                reject(err)
+            })
+        })
     },
     /**
      * Get
@@ -82,13 +82,13 @@ const request = {
                 url: url,
                 params: params
             }).then(res => {
-                resolve(res.data);
+                resolve(res.data)
             }, err => {
-                reject(err);
+                reject(err)
             }).catch(err => {
-                reject(err);
-            });
-        });
+                reject(err)
+            })
+        })
     },
     /**
      * Upload
@@ -108,14 +108,14 @@ const request = {
                 },
                 ...config
             }).then(res => {
-                resolve(res.data);
+                resolve(res.data)
             }, err => {
-                reject(err);
+                reject(err)
             }).catch(err => {
-                reject(err);
-            });
-        });
+                reject(err)
+            })
+        })
     }
-};
+}
 
-export default request;
+export default request

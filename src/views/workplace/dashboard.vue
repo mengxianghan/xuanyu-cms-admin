@@ -59,16 +59,16 @@
 </template>
 
 <script>
-    import {timeFix} from '@/utils/util';
-    import antd from '@/assets/images/ant-design-vue.svg';
-    import {mapState, mapActions} from 'vuex';
+    import {timeFix} from '@/utils/util'
+    import antd from '@/assets/images/ant-design-vue.svg'
+    import {mapState, mapActions} from 'vuex'
 
     export default {
         data() {
             return {
                 antd,
                 timeFix: timeFix()
-            };
+            }
         },
         created() {
         },
@@ -85,7 +85,7 @@
                 setConfig: 'config/setConfig'
             })
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

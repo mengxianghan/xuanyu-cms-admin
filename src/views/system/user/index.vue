@@ -57,9 +57,9 @@
 </template>
 
 <script>
-    import EditForm from './edit-form';
-    import AuthForm from './../role/auth-form';
-    import {changeKeys, getFieldsValue} from '@/utils/util';
+    import EditForm from './edit-form'
+    import AuthForm from './../role/auth-form'
+    import {changeKeys, getFieldsValue} from '@/utils/util'
 
     const columns = [
         {
@@ -84,7 +84,7 @@
             dataIndex: 'operation',
             scopedSlots: {customRender: 'operation'}
         }
-    ];
+    ]
     export default {
         name: "index",
         components: {
@@ -102,11 +102,11 @@
                 deptList: [],
                 deptLoading: false,
                 deptId: ''
-            };
+            }
         },
         created() {
-            this.getDeptList();
-            this.getList();
+            this.getDeptList()
+            this.getList()
         },
         computed: {
             treeData() {
@@ -116,7 +116,7 @@
                     key: 'id',
                     children: 'children',
                     parentId: 'parent_id'
-                });
+                })
             },
         },
         methods: {
@@ -124,41 +124,41 @@
              * 获取列表
              */
             getList() {
-                this.loading = true;
+                this.loading = true
                 this.$api.system.user.getList({
                     current_page: this.pagination.current,
                     page_size: this.pagination.pageSize,
                     dept_id: this.deptId
                 }).then(({code, data: {list, total}}) => {
-                    this.loading = false;
+                    this.loading = false
                     if (code === '200') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
-                        };
-                        this.list = list;
+                        }
+                        this.list = list
                     }
                 }).catch(() => {
-                    this.loading = false;
-                });
+                    this.loading = false
+                })
             },
             /**
              * 获取部门列表
              */
             getDeptList() {
-                this.deptLoading = true;
+                this.deptLoading = true
                 this.$api.system.dept.getList({
                     status: '1'
                 }).then(({code, data: {list}}) => {
                     if (code === '200') {
-                        this.deptList = list;
+                        this.deptList = list
                     }
                     this.$nextTick(() => {
-                        this.deptLoading = false;
-                    });
+                        this.deptLoading = false
+                    })
                 }).catch(() => {
-                    this.deptLoading = false;
-                });
+                    this.deptLoading = false
+                })
             },
             /**
              * 分页
@@ -169,8 +169,8 @@
                     ...this.pagination,
                     current: pagination.current,
                     pageSize: pagination.pageSize
-                };
-                this.getList();
+                }
+                this.getList()
             },
             /**
              * 选择部门
@@ -180,17 +180,17 @@
                     parentField: 'parentId',
                     parentId: selectedKeys[0] || '',
                     field: 'key'
-                }).join(',');
-                this.getList();
+                }).join(',')
+                this.getList()
             },
             /**
              * 完成
              */
             onComplete() {
-                this.getList();
+                this.getList()
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

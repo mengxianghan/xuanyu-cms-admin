@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import DetailModal from './detail-modal';
+    import DetailModal from './detail-modal'
 
     const columns = [
         {
@@ -59,7 +59,7 @@
             dataIndex: 'operation',
             scopedSlots: {customRender: 'operation'}
         }
-    ];
+    ]
     export default {
         components: {
             DetailModal
@@ -73,33 +73,33 @@
                     showSizeChanger: true
                 },
                 loading: false
-            };
+            }
         },
         created() {
-            this.getList();
+            this.getList()
         },
         methods: {
             /**
              * 获取列表
              */
             getList() {
-                this.loading = true;
+                this.loading = true
                 this.$api.system.log.getList({
                     current_page: this.pagination.current,
                     page_size: this.pagination.pageSize,
                     type: this.selectedKeys[0] || ''
                 }).then(({code, data: {list, total}}) => {
-                    this.loading = false;
+                    this.loading = false
                     if (code === '200') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
-                        };
-                        this.list = list;
+                        }
+                        this.list = list
                     }
                 }).catch(() => {
-                    this.loading = false;
-                });
+                    this.loading = false
+                })
             },
             /**
              * 分页
@@ -110,15 +110,15 @@
                     ...this.pagination,
                     current: pagination.current,
                     pageSize: pagination.pageSize
-                };
-                this.getList();
+                }
+                this.getList()
             },
             handleMenuClick({key}) {
-                this.selectedKeys = [key];
-                this.getList();
+                this.selectedKeys = [key]
+                this.getList()
             }
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

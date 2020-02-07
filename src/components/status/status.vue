@@ -12,7 +12,7 @@
             status: "success",
             text: '正常'
         }
-    ];
+    ]
     export default {
         name: "XStatus",
         props: {
@@ -22,17 +22,17 @@
             }
         },
         data() {
-            return {};
+            return {}
         },
         computed: {
             status() {
-                return list[Number(this.code)].status;
+                return list[Number(this.code)].status
             },
             text() {
-                return list[Number(this.code)].text;
+                return list[Number(this.code)].text
             },
         }
-    };
+    }
 </script>
 
 <style scoped>

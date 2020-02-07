@@ -35,9 +35,9 @@
         provide() {
             return {
                 col: this.col > 4 ? 4 : this.col
-            };
+            }
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

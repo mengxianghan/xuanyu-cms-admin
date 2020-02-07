@@ -74,9 +74,9 @@
 </template>
 
 <script>
-    import {changeKeys, getFieldsValue} from "@/utils/util";
-    import EditForm from './edit-form';
-    import DictDirForm from './dict-dir-form';
+    import {changeKeys, getFieldsValue} from "@/utils/util"
+    import EditForm from './edit-form'
+    import DictDirForm from './dict-dir-form'
 
     const columns = [
         {
@@ -97,7 +97,7 @@
             dataIndex: 'operation',
             scopedSlots: {customRender: 'operation'}
         }
-    ];
+    ]
     export default {
         name: "index",
         components: {
@@ -115,11 +115,11 @@
                 dictDirList: [],
                 dictDirLoading: false,
                 dictDirId: ''
-            };
+            }
         },
         created() {
-            this.getDictDirList();
-            this.getList();
+            this.getDictDirList()
+            this.getList()
         },
         computed: {
             treeData() {
@@ -130,7 +130,7 @@
                     parentId: 'parent_id',
                     sort: 'sort',
                     children: 'children'
-                }, {scopedSlots: {title: 'title'}});
+                }, {scopedSlots: {title: 'title'}})
             },
         },
         methods: {
@@ -138,37 +138,37 @@
              * 获取列表
              */
             getList() {
-                this.loading = true;
+                this.loading = true
                 this.$api.system.dict.getList({
                     current_page: this.pagination.current,
                     page_size: this.pagination.pageSize,
                     dict_dir_id: this.dictDirId
                 }).then(({code, data: {list, total}}) => {
-                    this.loading = false;
+                    this.loading = false
                     if (code === '200') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
-                        };
-                        this.list = list;
+                        }
+                        this.list = list
                     }
                 }).catch(() => {
-                    this.loading = false;
-                });
+                    this.loading = false
+                })
             },
             /**
              * 获取字典目录列表
              */
             getDictDirList() {
-                this.dictDirLoading = true;
+                this.dictDirLoading = true
                 this.$api.system.dictDir.getList({
                     status: '1'
                 }).then(({code, data: {list}}) => {
-                    this.dictDirLoading = false;
+                    this.dictDirLoading = false
                     if (code === '200') {
-                        this.dictDirList = list;
+                        this.dictDirList = list
                     }
-                });
+                })
             },
             /**
              * 分页
@@ -179,8 +179,8 @@
                     ...this.pagination,
                     current: pagination.current,
                     pageSize: pagination.pageSize
-                };
-                this.getList();
+                }
+                this.getList()
             },
             /**
              * 删除
@@ -191,9 +191,9 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.getList();
+                        this.getList()
                     }
-                });
+                })
             },
             /**
              * 选择目录
@@ -203,8 +203,8 @@
                     parentField: 'parentId',
                     parentId: selectedKeys[0] || '',
                     field: 'key'
-                }).join(',');
-                this.getList();
+                }).join(',')
+                this.getList()
             },
             /**
              * 操作目录
@@ -212,51 +212,51 @@
             handleDirClick(record, e) {
                 switch (e.key) {
                     case 'insert': // 新增同级
-                        this.$refs.dictDirForm.handleInsert(record);
-                        break;
+                        this.$refs.dictDirForm.handleInsert(record)
+                        break
                     case 'insertNext': // 新增下级
-                        this.$refs.dictDirForm.handleInsertNext(record);
-                        break;
+                        this.$refs.dictDirForm.handleInsertNext(record)
+                        break
                     case 'edit': // 编辑
-                        this.$refs.dictDirForm.handleEdit(record);
-                        break;
+                        this.$refs.dictDirForm.handleEdit(record)
+                        break
                     case 'delete': // 删除
                         this.$confirm({
                             title: '确认删除此数据?',
                             onOk: () => {
-                                this.$refs.dictDirForm.handleDelete(record);
+                                this.$refs.dictDirForm.handleDelete(record)
                             },
                             onCancel: () => {
                             },
-                        });
-                        break;
+                        })
+                        break
                 }
             },
             /**
              * 完成
              */
             onComplete() {
-                this.getList();
+                this.getList()
             },
             /**
              * 确认--字典目录
              */
             onDictDirOk() {
-                this.getDictDirList();
+                this.getDictDirList()
             },
             /**
              * 删除--字典目录
              * @param record
              */
             onDictDirDelete(record) {
-                this.getDictDirList();
+                this.getDictDirList()
                 if (this.dictDirId === record.id) {
-                    this.dictDirId = '';
-                    this.getList();
+                    this.dictDirId = ''
+                    this.getList()
                 }
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

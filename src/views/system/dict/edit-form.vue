@@ -31,34 +31,34 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
-    import {treeToList, changeKeys} from "@/utils/util";
+    import {form} from '@/utils/mixin'
+    import {treeToList, changeKeys} from "@/utils/util"
 
     export default {
         mixins: [form],
         data() {
             return {
                 dictDirKey: ''
-            };
+            }
         },
         created() {
             this.form = this.$form.createForm(this, {
                 onValuesChange: (_, values) => {
                     // 所属目录发生改变
                     if (values.dict_dir_id) {
-                        const data = treeToList(this.$parent.dictDirList).filter(item => item.id === values.dict_dir_id);
+                        const data = treeToList(this.$parent.dictDirList).filter(item => item.id === values.dict_dir_id)
                         if (data.length) {
-                            this.dictDirKey = data[0].key;
+                            this.dictDirKey = data[0].key
                         } else {
-                            this.dictDirKey = '';
+                            this.dictDirKey = ''
                         }
                     }
                 }
-            });
+            })
         },
         computed: {
             treeData() {
-                return changeKeys(this.$parent.dictDirList);
+                return changeKeys(this.$parent.dictDirList)
             }
         },
         methods: {
@@ -67,26 +67,26 @@
              */
             handleInsert() {
                 if (this.$parent.dictDirList.length === 0) {
-                    this.$message.warn('请添加字典目录');
-                    return false;
+                    this.$message.warn('请添加字典目录')
+                    return false
                 }
-                this.toggleModal();
-                this.title = '新增字典';
+                this.toggleModal()
+                this.title = '新增字典'
                 this.$nextTick(() => {
-                    const dictDirId = this.$parent.dictDirId.split(',').length ? this.$parent.dictDirId.split(',')[0] : '';
+                    const dictDirId = this.$parent.dictDirId.split(',').length ? this.$parent.dictDirId.split(',')[0] : ''
                     this.form.setFieldsValue({
                         dict_dir_id: dictDirId
-                    });
-                });
+                    })
+                })
             },
             /**
              * 编辑
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.title = '编辑字典';
-                this.dictDirKey = record.dict_dir_key;
+                this.toggleModal()
+                this.record = record
+                this.title = '编辑字典'
+                this.dictDirKey = record.dict_dir_key
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         dict_dir_id: record.dict_dir_id,
@@ -94,8 +94,8 @@
                         key: record.key,
                         status: record.status,
                         sort: record.sort
-                    });
-                });
+                    })
+                })
             },
             /**
              * 删除
@@ -106,10 +106,10 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.$emit('delete', record);
-                        this.$emit('complete', record);
+                        this.$emit('delete', record)
+                        this.$emit('complete', record)
                     }
-                });
+                })
             },
             /**
              * 确认
@@ -117,7 +117,7 @@
             onOk() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.confirmLoading = true;
+                        this.confirmLoading = true
                         this.$api.system.dict.submit({
                             id: this.record.id,
                             dict_dir_id: values.dict_dir_id,
@@ -127,29 +127,29 @@
                             status: values.status,
                             sort: values.sort
                         }).then(({code}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                             if (code === '200') {
-                                this.reset();
-                                this.toggleModal();
-                                this.$emit('ok', values);
-                                this.$emit('complete', values);
+                                this.reset()
+                                this.toggleModal()
+                                this.$emit('ok', values)
+                                this.$emit('complete', values)
                             }
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

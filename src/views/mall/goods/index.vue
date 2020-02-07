@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import EditForm from './edit-form';
+    import EditForm from './edit-form'
 
     const columns = [
         {
@@ -86,7 +86,7 @@
             dataIndex: 'operation',
             scopedSlots: {customRender: 'operation'}
         }
-    ];
+    ]
     export default {
         name: "index",
         components: {
@@ -100,32 +100,32 @@
                     showSizeChanger: true
                 },
                 loading: false
-            };
+            }
         },
         created() {
-            this.getList();
+            this.getList()
         },
         methods: {
             /**
              * 获取列表
              */
             getList() {
-                this.loading = true;
+                this.loading = true
                 this.$api.mall.goods.getList({
                     current_page: this.pagination.current,
                     page_size: this.pagination.pageSize
                 }).then(({code, data: {list, total}}) => {
-                    this.loading = false;
+                    this.loading = false
                     if (code === '200') {
                         this.pagination = {
                             ...this.pagination,
                             total: Number(total),
-                        };
-                        this.list = list;
+                        }
+                        this.list = list
                     }
                 }).catch(() => {
-                    this.loading = false;
-                });
+                    this.loading = false
+                })
             },
             /**
              * 分页
@@ -136,17 +136,17 @@
                     ...this.pagination,
                     current: pagination.current,
                     pageSize: pagination.pageSize
-                };
-                this.getList();
+                }
+                this.getList()
             },
             /**
              * 完成
              */
             onComplete() {
-                this.getList();
+                this.getList()
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

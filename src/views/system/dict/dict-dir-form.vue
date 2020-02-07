@@ -24,13 +24,13 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
-    import {getFieldsValue, changeKeys} from "@/utils/util";
+    import {form} from '@/utils/mixin'
+    import {getFieldsValue, changeKeys} from "@/utils/util"
 
     export default {
         mixins: [form],
         data() {
-            return {};
+            return {}
         },
         created() {
         },
@@ -41,7 +41,7 @@
             disabledId() {
                 return getFieldsValue(this.$parent.list, {
                     parentId: this.record.id
-                });
+                })
             },
             /**
              * 上级目录
@@ -59,10 +59,10 @@
                         key: "id",
                         children: "children",
                         disabled: (record) => {
-                            return this.disabledId.includes(record.id);
+                            return this.disabledId.includes(record.id)
                         }
                     })
-                ];
+                ]
             }
         },
         methods: {
@@ -70,42 +70,42 @@
              * 新增
              */
             handleInsert(record) {
-                this.toggleModal();
-                this.title = '新增字典目录';
+                this.toggleModal()
+                this.title = '新增字典目录'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record ? record.parent_id : '0'
-                    });
-                });
+                    })
+                })
             },
             /**
              * 新增下级
              */
             handleInsertNext(record) {
-                this.toggleModal();
-                this.title = '新增下级';
+                this.toggleModal()
+                this.title = '新增下级'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.id
-                    });
-                });
+                    })
+                })
             },
             /**
              * 编辑
              * @param record
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.title = '编辑字典目录';
+                this.toggleModal()
+                this.record = record
+                this.title = '编辑字典目录'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.parent_id,
                         name: record.name,
                         key: record.key,
                         sort: record.sort
-                    });
-                });
+                    })
+                })
             },
             /**
              * 删除
@@ -115,10 +115,10 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.$emit('delete', record);
-                        this.$emit('complete', record);
+                        this.$emit('delete', record)
+                        this.$emit('complete', record)
                     }
-                });
+                })
             },
             /**
              * 确认
@@ -126,8 +126,8 @@
             onOk() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        const isUpdateDirKey = Object.keys(this.record).length && values.key !== this.record.key ? '1' : '0';
-                        this.confirmLoading = true;
+                        const isUpdateDirKey = Object.keys(this.record).length && values.key !== this.record.key ? '1' : '0'
+                        this.confirmLoading = true
                         this.$api.system.dictDir.submit({
                             id: this.record.id,
                             parent_id: values.parent_id,
@@ -136,29 +136,29 @@
                             is_update_dir_key: isUpdateDirKey,
                             sort: values.sort
                         }).then(({code}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                             if (code === '200') {
-                                this.reset();
-                                this.toggleModal();
-                                this.$emit('ok', values);
-                                this.$emit('complete', values);
+                                this.reset()
+                                this.toggleModal()
+                                this.$emit('ok', values)
+                                this.$emit('complete', values)
                             }
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

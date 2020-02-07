@@ -23,10 +23,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from "vuex"
 
     export default {
-        name: "XUpload",
+        name: "XUploader",
         props: {
             value: '',
             field: {
@@ -57,7 +57,7 @@
                 loading: false,
                 previewImageUrl: '',
                 previewImageVisible: false
-            };
+            }
         },
         computed: {
             ...mapState({
@@ -72,23 +72,23 @@
                     name: item.orig_name,
                     status: 'done',
                     url: item.web_path
-                }));
-                return fileList;
+                }))
+                return fileList
             },
         },
         watch: {
             value(val) {
-                this.getBackFillList();
+                this.getBackFillList()
             },
             backfillList: {
                 deep: true,
                 handler(val) {
-                    const value = val.map(item => item[this.field] || '').join(',');
-                    this.load = false;
+                    const value = val.map(item => item[this.field] || '').join(',')
+                    this.load = false
                     // v-model
-                    this.$emit('input', value);
+                    this.$emit('input', value)
                     // v-decorator
-                    this.$emit('change', value);
+                    this.$emit('change', value)
                 }
             }
         },
@@ -98,16 +98,16 @@
              */
             async getBackFillList() {
                 if (!this.value) {
-                    this.backfillList = [];
-                    return;
+                    this.backfillList = []
+                    return
                 }
-                if (!this.load) return;
-                const params = {};
-                params['field'] = this.field;
-                params[this.field] = this.value;
-                const {code, data: {list}} = await this.$api.system.upload.getBackfillList(params);
+                if (!this.load) return
+                const params = {}
+                params['field'] = this.field
+                params[this.field] = this.value
+                const {code, data: {list}} = await this.$api.system.upload.getBackfillList(params)
                 if (code === '200') {
-                    this.backfillList = list;
+                    this.backfillList = list
                 }
             },
             /**
@@ -115,28 +115,28 @@
              */
             handleChange(info) {
                 if (info.file.status === 'uploading') {
-                    this.loading = true;
-                    return;
+                    this.loading = true
+                    return
                 }
                 if (info.file.status === 'done') {
-                    this.loading = false;
+                    this.loading = false
                 }
             },
             /**
              * 预览
              */
             handlePreview(file) {
-                this.previewImageUrl = file.url;
-                this.previewImageVisible = true;
+                this.previewImageUrl = file.url
+                this.previewImageVisible = true
             },
             /**
              * 移除
              */
             handleRemove(file) {
                 if (file) {
-                    const id = file.uid;
-                    const list = this.backfillList.filter(item => item.id !== id);
-                    this.backfillList = list;
+                    const id = file.uid
+                    const list = this.backfillList.filter(item => item.id !== id)
+                    this.backfillList = list
                 }
             },
             /**
@@ -144,50 +144,50 @@
              */
             onBeforeUpload(file, fileList) {
                 if (fileList.length > this.count) {
-                    this.$message.warning(`超出允许上传的数量 ${this.count}`);
-                    return false;
+                    this.$message.warning(`超出允许上传的数量 ${this.count}`)
+                    return false
                 }
-                return true;
+                return true
             },
             /**
              * 自定义上传
              * @param options
              */
             customRequest(options) {
-                const formData = new FormData();
+                const formData = new FormData()
                 //文件对象
-                formData.append('file', options.file);
-                formData.append('domain_name', this.domainName);
-                formData.append('upload_dir', this.uploadDir);
-                formData.append('allowed_file_type', this.allowedFileType);
-                formData.append('allowed_file_size', this.allowedFileSize);
+                formData.append('file', options.file)
+                formData.append('domain_name', this.domainName)
+                formData.append('upload_dir', this.uploadDir)
+                formData.append('allowed_file_type', this.allowedFileType)
+                formData.append('allowed_file_size', this.allowedFileSize)
                 //文件目录
                 this.$api.system.upload.doUpload(formData, {
                     onUploadProgress: function (progressEvent) {
-                        const percent = progressEvent.loaded / progressEvent.total * 100;
+                        const percent = progressEvent.loaded / progressEvent.total * 100
                         options.onProgress({
                             percent: percent
-                        });
+                        })
                     }
                 }).then(({code, message, data}) => {
                     if (code === '200') {
                         if (this.multiple) {
-                            this.backfillList.push(data);
+                            this.backfillList.push(data)
                         } else {
-                            this.backfillList = [data];
+                            this.backfillList = [data]
                         }
-                        options.onSuccess(data);
+                        options.onSuccess(data)
                     } else {
-                        options.onError();
+                        options.onError()
                     }
                 }, err => {
-                    options.onError();
+                    options.onError()
                 }).catch(err => {
-                    options.onError();
-                });
+                    options.onError()
+                })
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

@@ -1,7 +1,9 @@
 <template>
     <a-col v-bind="span">
         <div class="label">{{label}}</div>
-        <div class="content"><slot></slot></div>
+        <div class="content">
+            <slot></slot>
+        </div>
     </a-col>
 </template>
 
@@ -11,7 +13,7 @@
         2: {xs: 24, sm: 12},
         3: {xs: 24, sm: 12, md: 8},
         4: {xs: 24, sm: 12, md: 6}
-    };
+    }
     export default {
         name: "XDescriptionListItem",
         props: {
@@ -28,10 +30,10 @@
         },
         computed: {
             span() {
-                return responsive[this.col];
+                return responsive[this.col]
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

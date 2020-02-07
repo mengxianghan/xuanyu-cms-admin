@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import router from '@/router';
-import {message} from 'ant-design-vue/es';
+import Vue from 'vue'
+import router from '@/router'
+import {message} from 'ant-design-vue/es'
 
 const state = {
     token: '',
@@ -9,7 +9,7 @@ const state = {
     fullName: '',
     avatar: '',
     lastLoginTime: ''
-};
+}
 
 const mutations = {
     /**
@@ -19,10 +19,10 @@ const mutations = {
      */
     SET_USER_INFO(state, payload = {}) {
         for (let key in payload) {
-            state[key] = payload[key];
+            state[key] = payload[key]
         }
     }
-};
+}
 
 const actions = {
     /**
@@ -41,27 +41,27 @@ const actions = {
                 password: password
             }).then(({code, data}) => {
                 if (code === '200') {
-                    Vue.ls.set('userInfo', data);
+                    Vue.ls.set('userInfo', data)
                     dispatch('asyncRoutes/generateRoutes', null, {root: true}).then(() => {
-                        const menu = rootState.asyncRoutes.menu;
+                        const menu = rootState.asyncRoutes.menu
                         if (menu.length) {
-                            const validRoute = getFirstValidRoute(menu);
-                            const name = validRoute.name;
-                            router.push({name: name});
+                            const validRoute = getFirstValidRoute(menu)
+                            const name = validRoute.name
+                            router.push({name: name})
                         } else {
-                            message.warning('没有任何权限，请联系站点管理员');
+                            message.warning('没有任何权限，请联系站点管理员')
                         }
-                    });
-                    resolve(data);
+                    })
+                    resolve(data)
                 } else {
-                    reject();
+                    reject()
                 }
             }, (err) => {
-                reject();
+                reject()
             }).catch(() => {
-                reject();
-            });
-        });
+                reject()
+            })
+        })
     },
     /**
      * 设置用户信息
@@ -69,8 +69,8 @@ const actions = {
      */
     setUserInfo({commit}) {
         return new Promise((resolve, reject) => {
-            const userInfo = Vue.ls.get('userInfo');
-            const avatar = require('@/assets/images/logo.svg');
+            const userInfo = Vue.ls.get('userInfo')
+            const avatar = require('@/assets/images/logo.svg')
             if (userInfo) {
                 commit('SET_USER_INFO', {
                     userId: userInfo.id,
@@ -79,21 +79,21 @@ const actions = {
                     avatar: userInfo.avatar || avatar,
                     lastLoginTime: userInfo.last_login_time || '',
                     token: userInfo.token
-                });
-                resolve(true);
+                })
+                resolve(true)
             } else {
-                reject();
+                reject()
             }
-        });
+        })
     }
-};
+}
 
 export default {
     namespaced: true,
     state,
     mutations,
     actions
-};
+}
 
 /**
  * 获取第一个有效菜单
@@ -101,18 +101,18 @@ export default {
  * @returns {{}}
  */
 const getFirstValidRoute = (menu) => {
-    let route = {};
+    let route = {}
     for (let item of menu) {
         if (item.children && item.children.length) {
-            let temp = getFirstValidRoute(item.children);
+            let temp = getFirstValidRoute(item.children)
             if (Object.keys(temp).length) {
-                route = temp;
-                break;
+                route = temp
+                break
             }
         } else {
-            route = item;
-            break;
+            route = item
+            break
         }
     }
-    return route;
-};
+    return route
+}

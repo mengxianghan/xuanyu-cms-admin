@@ -19,31 +19,31 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
+    import {form} from '@/utils/mixin'
 
     const type = {
         1: '登录日志',
         2: '操作日志',
         3: '异常日志',
-    };
+    }
     export default {
         mixins: [form],
         data() {
-            return {};
+            return {}
         },
         filters: {
             typeFilter(key) {
-                return type[key];
+                return type[key]
             }
         },
         methods: {
             handleDetail(record) {
-                this.title = '日志详情';
-                this.visible = true;
-                this.record = record;
+                this.title = '日志详情'
+                this.visible = true
+                this.record = record
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

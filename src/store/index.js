@@ -1,12 +1,12 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import app from './modules/app';
-import user from './modules/user';
-import asyncRoutes from './modules/asyncRoutes';
-import config from './modules/config';
+import app from './modules/app'
+import user from './modules/user'
+import asyncRoutes from './modules/asyncRoutes'
+import config from './modules/config'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
     modules: {
@@ -15,6 +15,6 @@ const store = new Vuex.Store({
         asyncRoutes,
         config
     }
-});
+})
 
-export default store;
+export default store

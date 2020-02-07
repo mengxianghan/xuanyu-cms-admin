@@ -33,8 +33,8 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
-    import {getFieldsValue, changeKeys} from '@/utils/util';
+    import {form} from '@/utils/mixin'
+    import {getFieldsValue, changeKeys} from '@/utils/util'
 
     export default {
         mixins: [form],
@@ -42,7 +42,7 @@
             return {
                 templateList: [],
                 templateLoading: false
-            };
+            }
         },
         computed: {
             /**
@@ -51,7 +51,7 @@
             disabledId() {
                 return getFieldsValue(this.$parent.list, {
                     parentId: this.record.id
-                });
+                })
             },
             /**
              * 上级目录
@@ -67,9 +67,9 @@
                     key: "id",
                     children: "children",
                     disabled: (record) => {
-                        return this.disabledId.includes(record.id);
+                        return this.disabledId.includes(record.id)
                     }
-                })];
+                })]
             },
         },
         created() {
@@ -77,7 +77,7 @@
         watch: {
             visible(val) {
                 if (val && !this.templateList.length) {
-                    this.getTemplateList();
+                    this.getTemplateList()
                 }
             }
         },
@@ -86,35 +86,35 @@
              * 获取模板列表
              */
             async getTemplateList() {
-                this.templateLoading = true;
+                this.templateLoading = true
                 const {code, data: {list}} = await this.$api.information.template.getList({
                     has_pagination: 0,
                     status: 1
-                });
-                this.templateLoading = false;
+                })
+                this.templateLoading = false
                 if (code === '200') {
-                    this.templateList = list;
+                    this.templateList = list
                 }
             },
             /**
              * 新增
              */
             handleInsert(record) {
-                this.toggleModal();
-                this.title = '新增栏目';
+                this.toggleModal()
+                this.title = '新增栏目'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record ? record.id : '0'
-                    });
-                });
+                    })
+                })
             },
             /**
              * 编辑
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.title = '编辑栏目';
+                this.toggleModal()
+                this.record = record
+                this.title = '编辑栏目'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         parent_id: record.parent_id,
@@ -122,8 +122,8 @@
                         template_id: record.template_id,
                         status: record.status,
                         sort: record.sort
-                    });
-                });
+                    })
+                })
             },
             /**
              * 删除
@@ -134,10 +134,10 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.$emit('delete', record);
-                        this.$emit('complete', record);
+                        this.$emit('delete', record)
+                        this.$emit('complete', record)
                     }
-                });
+                })
             },
             /**
              * 确认
@@ -145,7 +145,7 @@
             onOk() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.confirmLoading = true;
+                        this.confirmLoading = true
                         this.$api.information.column.submit({
                             id: this.record.id,
                             parent_id: values.parent_id,
@@ -154,29 +154,29 @@
                             status: values.status,
                             sort: values.sort
                         }).then(({code}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                             if (code === '200') {
-                                this.reset();
-                                this.toggleModal();
-                                this.$emit('ok', values);
-                                this.$emit('complete', values);
+                                this.reset()
+                                this.toggleModal()
+                                this.$emit('ok', values)
+                                this.$emit('complete', values)
                             }
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

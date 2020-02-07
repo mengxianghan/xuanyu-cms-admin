@@ -8,10 +8,10 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
-    import tinymce from 'tinymce';
-    import Editor from '@tinymce/tinymce-vue';
-    import 'tinymce/themes/silver';
+    import {mapState} from 'vuex'
+    import tinymce from 'tinymce'
+    import Editor from '@tinymce/tinymce-vue'
+    // import 'tinymce/themes/silver';
     // 编辑器插件plugins
     // 更多插件参考：https://www.tiny.cloud/docs/plugins/
     // import 'tinymce/plugins/image';// 插入上传图片插件
@@ -56,7 +56,7 @@
         data() {
             return {
                 content: ''
-            };
+            }
         },
         computed: {
             ...mapState({
@@ -84,40 +84,40 @@
                     // 此处为图片上传处理函数，这个直接用了base64的图片形式上传图片，
                     // 如需ajax上传可参考https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_handler
                     images_upload_handler: (blobInfo, success, failure) => {
-                        const formData = new FormData();
+                        const formData = new FormData()
                         //文件对象
-                        formData.append('file', blobInfo.blob(), blobInfo.filename());
-                        formData.append('upload_dir', this.uploadDir);
-                        formData.append('allowed_file_type', this.allowedFileType);
-                        formData.append('allowed_file_size', this.allowedFileSize);
+                        formData.append('file', blobInfo.blob(), blobInfo.filename())
+                        formData.append('upload_dir', this.uploadDir)
+                        formData.append('allowed_file_type', this.allowedFileType)
+                        formData.append('allowed_file_size', this.allowedFileSize)
                         //文件目录
                         this.$api.system.upload.doUpload(formData).then(({code, message, data}) => {
                             if (code === '200') {
-                                success(data.relative_path);
+                                success(data.relative_path)
                             } else {
-                                failure(message);
+                                failure(message)
                             }
-                        });
+                        })
                     }
-                };
+                }
             }
         },
         mounted() {
-            tinymce.init({});
+            tinymce.init({})
         },
         watch: {
             value(val) {
-                this.content = val;
+                this.content = val
             },
             content(val) {
                 // v-model
-                this.$emit('input', val);
+                this.$emit('input', val)
                 // v-decorator
-                this.$emit('change', val);
+                this.$emit('change', val)
             },
         },
         methods: {}
-    };
+    }
 </script>
 
 <style scoped>

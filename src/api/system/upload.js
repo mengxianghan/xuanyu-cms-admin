@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 export default {
     //获取列表
@@ -9,4 +9,4 @@ export default {
     doUpload: (params, config) => request.upload('/system/upload/do_upload', params, config),
     //删除
     delete: (params) => request.post('/system/upload/delete', params)
-};
+}

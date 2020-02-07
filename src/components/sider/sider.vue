@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState} from 'vuex'
 
     export default {
         name: 'XSider',
@@ -20,15 +20,15 @@
             }
         },
         data() {
-            return {};
+            return {}
         },
         computed: {
             ...mapState({
-                name:state=>state.app.name,
+                name: state => state.app.name,
                 logo: state => state.app.logo
             })
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

@@ -1,19 +1,19 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 
 const state = {
-    name:'xuanyu CMS',
+    name: 'xuanyu CMS',
     site: 'zh',
     logo: require('@/assets/images/logo.svg')
-};
+}
 
-const mutations = {};
+const mutations = {}
 
-const actions = {};
+const actions = {}
 
 export default {
     namespaced: true,
     state,
     mutations,
     actions
-};
+}

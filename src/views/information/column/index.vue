@@ -39,7 +39,7 @@
 </template>
 
 <script>
-    import EditForm from './edit-form';
+    import EditForm from './edit-form'
 
     const columns = [
         {
@@ -64,7 +64,7 @@
             dataIndex: 'operation',
             scopedSlots: {customRender: 'operation'}
         }
-    ];
+    ]
     export default {
         name: "index",
         components: {
@@ -75,34 +75,34 @@
                 columns,
                 list: [],
                 loading: false
-            };
+            }
         },
         created() {
-            this.getList();
+            this.getList()
         },
         methods: {
             /**
              * 获取列表
              */
             getList() {
-                this.loading = true;
+                this.loading = true
                 this.$api.information.column.getList().then(({code, data: {list}}) => {
-                    this.loading = false;
+                    this.loading = false
                     if (code === '200') {
-                        this.list = list;
+                        this.list = list
                     }
                 }).catch(() => {
-                    this.loading = false;
-                });
+                    this.loading = false
+                })
             },
             /**
              * 完成
              */
             onComplete() {
-                this.getList();
+                this.getList()
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

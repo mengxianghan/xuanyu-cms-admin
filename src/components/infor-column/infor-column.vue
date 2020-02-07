@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import {changeKeys} from "@/utils/util";
+    import {changeKeys} from "@/utils/util"
 
     export default {
         name: 'XInforColumn',
@@ -30,20 +30,20 @@
                 spinning: false,
                 list: [],
                 treeData: [],
-            };
+            }
         },
         created() {
-            this.getList();
+            this.getList()
         },
         methods: {
             /**
              * 获取列表
              */
             async getList() {
-                this.spinning = true;
+                this.spinning = true
                 const {code, data: {list}} = await this.$api.information.column.getList({
                     status: '1'
-                });
+                })
                 if (code === '200') {
                     const treeData = changeKeys(list, {
                         title: 'name',
@@ -52,32 +52,32 @@
                         children: 'children',
                         disabled: (record) => {
                             if (this.allowDisabled) {
-                                return record.menu_id === this.$route.meta.id ? false : true;
+                                return record.menu_id === this.$route.meta.id ? false : true
                             }
-                            return false;
+                            return false
                         }
-                    });
-                    this.list = list;
-                    this.treeData = treeData;
-                    this.$emit('complete', {data: list, treeData: treeData});
+                    })
+                    this.list = list
+                    this.treeData = treeData
+                    this.$emit('complete', {data: list, treeData: treeData})
                 }
                 this.$nextTick(() => {
-                    this.spinning = false;
-                });
+                    this.spinning = false
+                })
             },
             /**
              * 获取第一个有效栏目
              */
             getFirstValidColumn(treeList) {
-                if (!Array.isArray(treeList)) return [];
+                if (!Array.isArray(treeList)) return []
                 for (let item of treeList) {
                     if (!item.disabled) {
-                        return item;
+                        return item
                     } else {
                         if (item.children && item.children.length > 0) {
-                            let children = this.getFirstValidColumn(item.children);
+                            let children = this.getFirstValidColumn(item.children)
                             if (children) {
-                                return children;
+                                return children
                             }
                         }
                     }
@@ -89,10 +89,10 @@
              * @param e
              */
             handleSelect(selectedKeys, e) {
-                this.$emit('select', selectedKeys, e);
+                this.$emit('select', selectedKeys, e)
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

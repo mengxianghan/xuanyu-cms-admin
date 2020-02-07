@@ -12,8 +12,8 @@
             <a-form-item label="密码"
                          :extra="isRequiredPassword ? '' : '不填写则不修改'">
                 <a-input-password
-                        v-decorator="['password',{rules:[{required:isRequiredPassword,message:'请输入密码'},{validator:verifyPassword}]}]"
-                        allow-clear></a-input-password>
+                    v-decorator="['password',{rules:[{required:isRequiredPassword,message:'请输入密码'},{validator:verifyPassword}]}]"
+                    allow-clear></a-input-password>
             </a-form-item>
             <a-form-item label="角色">
                 <a-select v-decorator="['role_id',{rules:[{required:true,message:'请输入选择角色'}]}]"
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
+    import {form} from '@/utils/mixin'
 
     export default {
         mixins: [form],
@@ -69,29 +69,29 @@
                 postList: [],
                 postLoading: false,
                 isRequiredPassword: false
-            };
+            }
         },
         watch: {
             visible(val) {
                 if (val) {
                     if (!this.roleList.length) {
-                        this.getRoleList();
+                        this.getRoleList()
                     }
                     if (!this.postList.length) {
-                        this.getPostList();
+                        this.getPostList()
                     }
                 }
             }
         },
         computed: {
             treeData() {
-                return this.$parent.treeData;
+                return this.$parent.treeData
             },
             /**
              * 是否超级管理员
              */
             isSuper() {
-                return this.record.type === '1' ? true : false;
+                return this.record.type === '1' ? true : false
             }
         },
         methods: {
@@ -104,62 +104,62 @@
             verifyPassword(rule, value, callback) {
                 if (value) {
                     if (value.trim().length < 6) {
-                        callback('密码长度至少6位');
+                        callback('密码长度至少6位')
                     }
                 }
-                callback();
+                callback()
             },
             /**
              * 获取角色列表
              */
             async getRoleList() {
-                this.roleLoading = true;
+                this.roleLoading = true
                 const {code, data: {list}} = await this.$api.system.role.getList({
                     status: '1',
                     has_pagination: '0'
-                });
-                this.roleLoading = false;
+                })
+                this.roleLoading = false
                 if (code === '200') {
-                    this.roleList = list;
+                    this.roleList = list
                 }
             },
             /**
              * 获取岗位列表
              */
             async getPostList() {
-                this.postLoading = true;
+                this.postLoading = true
                 const {code, data: {list}} = await this.$api.system.post.getList({
                     status: '1',
                     has_pagination: '0'
-                });
-                this.postLoading = false;
+                })
+                this.postLoading = false
                 if (code === '200') {
-                    this.postList = list;
+                    this.postList = list
                 }
             },
             /**
              * 新增
              */
             handleInsert() {
-                this.toggleModal();
-                this.title = '新增用户';
+                this.toggleModal()
+                this.title = '新增用户'
                 this.$nextTick(() => {
-                    const deptId = this.$parent.deptId.split(',').length ? this.$parent.deptId.split(',')[0] : '';
-                    this.isRequiredPassword = true;
+                    const deptId = this.$parent.deptId.split(',').length ? this.$parent.deptId.split(',')[0] : ''
+                    this.isRequiredPassword = true
                     this.form.setFieldsValue({
                         dept_id: deptId
-                    });
-                });
+                    })
+                })
             },
             /**
              * 编辑
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.title = '编辑用户';
+                this.toggleModal()
+                this.record = record
+                this.title = '编辑用户'
                 this.$nextTick(() => {
-                    this.isRequiredPassword = false;
+                    this.isRequiredPassword = false
                     this.form.setFieldsValue({
                         username: record.username,
                         role_id: record.role_id,
@@ -170,8 +170,8 @@
                         email: record.email,
                         status: record.status,
                         sort: record.sort
-                    });
-                });
+                    })
+                })
             },
             /**
              * 删除
@@ -182,10 +182,10 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.$emit('delete', record);
-                        this.$emit('complete', record);
+                        this.$emit('delete', record)
+                        this.$emit('complete', record)
                     }
-                });
+                })
             },
             /**
              * 确认
@@ -193,7 +193,7 @@
             onOk() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.confirmLoading = true;
+                        this.confirmLoading = true
                         this.$api.system.user.submit({
                             id: this.record.id,
                             username: values.username,
@@ -207,29 +207,29 @@
                             status: values.status,
                             sort: values.sort
                         }).then(({code}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                             if (code === '200') {
-                                this.reset();
-                                this.toggleModal();
-                                this.$emit('ok', values);
-                                this.$emit('complete', values);
+                                this.reset()
+                                this.toggleModal()
+                                this.$emit('ok', values)
+                                this.$emit('complete', values)
                             }
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

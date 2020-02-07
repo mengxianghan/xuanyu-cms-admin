@@ -1,3 +1,3 @@
-import basicLayout from "./basicLayout";
+import basicLayout from "./basicLayout"
 
-export {basicLayout};
+export {basicLayout}

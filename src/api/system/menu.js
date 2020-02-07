@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 export default {
     getList: (params) => request.get('/system/menu/get_list', params),
@@ -6,4 +6,4 @@ export default {
     delete: (params) => request.post('/system/menu/delete', params),
     // 供 async router 临时使用
     getMenu: (params) => request.get('/system/menu/get_menu', params)
-};
+}

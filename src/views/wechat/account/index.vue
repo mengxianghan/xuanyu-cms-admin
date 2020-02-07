@@ -28,7 +28,7 @@
                         </a-card-meta>
                         <template class="ant-card-actions" slot="actions">
                             <span @click="$refs.editForm.handleEdit(item)" v-action:edit><a-icon
-                                    type="edit"/>&nbsp;编辑</span>
+                                type="edit"/>&nbsp;编辑</span>
                             <span v-action:delete>
                                 <a-popconfirm title="确认删除此数据?"
                                               @confirm="$refs.editForm.handleDelete(item)">
@@ -46,9 +46,9 @@
 </template>
 
 <script>
-    import EditForm from './edit-form';
+    import EditForm from './edit-form'
 
-    const grid = {gutter: 16, column: 3, xs: 1, sm: 1, md: 2, lg: 3};
+    const grid = {gutter: 16, column: 3, xs: 1, sm: 1, md: 2, lg: 3}
     export default {
         components: {
             EditForm
@@ -58,36 +58,36 @@
                 grid,
                 loading: false,
                 list: []
-            };
+            }
         },
         created() {
-            this.getList();
+            this.getList()
         },
         methods: {
             /**
              * 获取列表
              */
             getList() {
-                this.loading = true;
+                this.loading = true
                 this.$api.wechat.account.getList({
                     has_pagination: 0
                 }).then(({code, data: {list, total}}) => {
-                    this.loading = false;
+                    this.loading = false
                     if (code === '200') {
-                        this.list = [{id: ''}, ...list];
+                        this.list = [{id: ''}, ...list]
                     }
                 }).catch(() => {
-                    this.loading = false;
-                });
+                    this.loading = false
+                })
             },
             /**
              * 完成
              */
             onComplete() {
-                this.getList();
+                this.getList()
             }
         },
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

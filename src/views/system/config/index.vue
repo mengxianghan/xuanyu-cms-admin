@@ -58,7 +58,7 @@
                 <a-form-item label="允许的文件类型"
                              extra="* 代表所有文件；也可以使用 jpg|png|gif 方式">
                     <a-input
-                            v-decorator="['allowed_file_type']"></a-input>
+                        v-decorator="['allowed_file_type']"></a-input>
                 </a-form-item>
                 <a-form-item label="允许的文件大小"
                              extra="1 MB = 1024 KB">
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
+    import {form} from '@/utils/mixin'
 
     const tabList = [
         {
@@ -93,7 +93,7 @@
             tab: '上传配置',
             key: 'upload',
         },
-    ];
+    ]
     export default {
         name: "index",
         mixins: [form],
@@ -103,16 +103,16 @@
                 key: 'basic',
                 id: '',
                 loading: false
-            };
+            }
         },
         created() {
-            const {tab} = this.$route.query;
-            if (tab) this.key = tab;
-            this.getData();
+            const {tab} = this.$route.query
+            if (tab) this.key = tab
+            this.getData()
         },
         watch: {
             '$route'(val) {
-                if (val.query.tab) this.key = val.query.tab;
+                if (val.query.tab) this.key = val.query.tab
             }
         },
         methods: {
@@ -135,10 +135,10 @@
                             upload_dir: data.upload_dir,
                             allowed_file_type: data.allowed_file_type,
                             allowed_file_size: data.allowed_file_size
-                        });
-                        this.id = data.id;
+                        })
+                        this.id = data.id
                     }
-                });
+                })
             },
             /**
              * 提交
@@ -146,7 +146,7 @@
             handleSubmit() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.loading = true;
+                        this.loading = true
                         this.$api.system.config.submit({
                             id: this.id,
                             name: values.name,
@@ -162,28 +162,28 @@
                             allowed_file_type: values.allowed_file_type,
                             allowed_file_size: values.allowed_file_size
                         }).then(({code, data}) => {
-                            this.loading = false;
+                            this.loading = false
                             if (code === '200') {
                                 if (data.insert_id) {
-                                    this.id = data.insert_id;
+                                    this.id = data.insert_id
                                 }
-                                this.$store.dispatch('config/setConfig');
+                                this.$store.dispatch('config/setConfig')
                             }
                         }, err => {
-                            this.loading = false;
-                        });
+                            this.loading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 切换页签
              * @param key
              */
             onTabChange(key) {
-                this.$router.push({name: 'config', query: {tab: key}});
+                this.$router.push({name: 'config', query: {tab: key}})
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

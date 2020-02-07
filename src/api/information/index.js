@@ -1,8 +1,8 @@
-import column from './column';
-import news from './news';
-import single from './single';
-import tag from './tag';
-import template from './template';
+import column from './column'
+import news from './news'
+import single from './single'
+import tag from './tag'
+import template from './template'
 
 export default {
     column,
@@ -10,4 +10,4 @@ export default {
     single,
     tag,
     template
-};
+}

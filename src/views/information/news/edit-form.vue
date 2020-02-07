@@ -33,11 +33,11 @@
                                        :loading="columnLoading"></a-tree-select>
                     </a-form-item>
                     <a-form-item label="缩略图">
-                        <x-upload v-decorator="['thumb']"
-                                  list-type="picture-card"
-                                  show-upload-list
-                                  v-if="visible">
-                        </x-upload>
+                        <x-uploader v-decorator="['thumb']"
+                                    list-type="picture-card"
+                                    show-upload-list
+                                    v-if="visible">
+                        </x-uploader>
                     </a-form-item>
                     <a-form-item label="作者">
                         <a-input v-decorator="['author']"></a-input>
@@ -78,23 +78,23 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
-    import {changeKeys, stringToArray, arrayToString, stringToBoolean, booleanToString} from "@/utils/util";
-    import {debounce} from 'lodash';
+    import {form} from '@/utils/mixin'
+    import {changeKeys, stringToArray, arrayToString, stringToBoolean, booleanToString} from "@/utils/util"
+    import {debounce} from 'lodash'
 
     export default {
         mixins: [form],
         data() {
-            this.onTagSearch = debounce(this.onTagSearch, 500);
+            this.onTagSearch = debounce(this.onTagSearch, 500)
             return {
                 columnLoading: false,
                 tagList: [],
                 tagSpinning: false
-            };
+            }
         },
         computed: {
             columnTreeData() {
-                return this.$parent.columnTreeData;
+                return this.$parent.columnTreeData
             }
         },
         methods: {
@@ -102,16 +102,16 @@
              * 新增
              */
             handleInsert() {
-                this.toggleModal();
-                this.title = '新增新闻';
+                this.toggleModal()
+                this.title = '新增新闻'
             },
             /**
              * 编辑
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.title = '编辑新闻';
+                this.toggleModal()
+                this.record = record
+                this.title = '编辑新闻'
                 this.$nextTick(() => {
                     this.form.setFieldsValue({
                         title: record.title,
@@ -129,8 +129,8 @@
                         is_hot: stringToBoolean(record.is_hot),
                         status: record.status,
                         sort: record.sort
-                    });
-                });
+                    })
+                })
             },
             /**
              * 删除
@@ -141,10 +141,10 @@
                     id: record.id
                 }).then(({code}) => {
                     if (code === '200') {
-                        this.$emit('delete', record);
-                        this.$emit('complete', record);
+                        this.$emit('delete', record)
+                        this.$emit('complete', record)
                     }
-                });
+                })
             },
             /**
              * 确认
@@ -152,9 +152,9 @@
             onOk() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.confirmLoading = true;
-                        const tag = arrayToString(values.tag);
-                        this.submitTag(tag);
+                        this.confirmLoading = true
+                        const tag = arrayToString(values.tag)
+                        this.submitTag(tag)
                         this.$api.information.news.submit({
                             id: this.record.id,
                             title: values.title,
@@ -173,55 +173,55 @@
                             status: values.status,
                             sort: values.sort
                         }).then(({code}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                             if (code === '200') {
-                                this.reset();
-                                this.toggleModal();
-                                this.$emit('ok', values);
-                                this.$emit('complete', values);
+                                this.reset()
+                                this.toggleModal()
+                                this.$emit('ok', values)
+                                this.$emit('complete', values)
                             }
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             },
             /**
              * 搜索标签
              * @param value
              */
             onTagSearch(value) {
-                if (!value) return;
-                this.tagSpinning = true;
+                if (!value) return
+                this.tagSpinning = true
                 this.$api.information.tag.getList({
                     name: value,
                     has_pagination: '0'
                 }).then(({code, data: {list}}) => {
-                    this.tagSpinning = false;
+                    this.tagSpinning = false
                     if (code === '200') {
                         const tagList = list.map(item => ({
                             text: item.name,
                             value: item.name
-                        }));
-                        this.tagList = tagList;
+                        }))
+                        this.tagList = tagList
                     }
                 }, error => {
-                    this.tagSpinning = false;
-                });
+                    this.tagSpinning = false
+                })
             },
             /**
              * 标签发生改变
              */
             onTagChange() {
-                this.tagList = [];
+                this.tagList = []
             },
             /**
              * 提交 tag
@@ -229,13 +229,13 @@
              * @returns {Promise<void>}
              */
             async submitTag(name) {
-                if (!name) return;
+                if (!name) return
                 await this.$api.information.tag.replace({
                     name: name
-                });
+                })
             }
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>

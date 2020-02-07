@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
+    import {form} from '@/utils/mixin'
 
     export default {
         mixins: [form],
@@ -49,7 +49,7 @@
                     name: ''
                 },
                 content: ''
-            };
+            }
         },
         created() {
         },
@@ -57,7 +57,7 @@
             currentColumn: {
                 deep: true,
                 handler() {
-                    this.getData();
+                    this.getData()
                 }
             },
         },
@@ -66,19 +66,19 @@
              * 获取数据
              */
             getData() {
-                this.spinning = true;
+                this.spinning = true
                 this.$api.information.single.getData({
                     column_id: this.currentColumn.id
                 }).then(({code, data: {title, content}}) => {
-                    this.spinning = false;
+                    this.spinning = false
                     if (code === '200') {
                         this.form.setFieldsValue({
                             title: title || this.currentColumn.name,
                             content: content
-                        });
-                        this.content = content;
+                        })
+                        this.content = content
                     }
-                });
+                })
             },
             /**
              * 保存
@@ -86,20 +86,20 @@
             handleSubmit() {
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
-                        this.confirmLoading = true;
+                        this.confirmLoading = true
                         this.$api.information.single.submit({
                             column_id: this.currentColumn.id,
                             title: values.title,
                             content: values.content
                         }).then(({code, data}) => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                         }, err => {
-                            this.confirmLoading = false;
+                            this.confirmLoading = false
                         }, err => {
-                            this.confirmLoading = false;
-                        });
+                            this.confirmLoading = false
+                        })
                     }
-                });
+                })
             },
             /**
              * 选择栏目
@@ -107,9 +107,9 @@
              */
             handleSelect(selectedKeys, e) {
                 if (selectedKeys.length) {
-                    const {title, value} = e.node;
-                    this.$set(this.currentColumn, 'id', value);
-                    this.$set(this.currentColumn, 'name', title);
+                    const {title, value} = e.node
+                    this.$set(this.currentColumn, 'id', value)
+                    this.$set(this.currentColumn, 'name', title)
                 }
             },
             /**
@@ -117,14 +117,14 @@
              * @param treeData
              */
             onInfoColumnComplete({treeData}) {
-                const currentColumn = this.$refs.informationColumn.getFirstValidColumn(treeData);
+                const currentColumn = this.$refs.informationColumn.getFirstValidColumn(treeData)
                 if (currentColumn) {
-                    this.$set(this.currentColumn, 'id', currentColumn.value);
-                    this.$set(this.currentColumn, 'name', currentColumn.title);
+                    this.$set(this.currentColumn, 'id', currentColumn.value)
+                    this.$set(this.currentColumn, 'name', currentColumn.title)
                 }
             }
         }
-    };
+    }
 </script>
 
 <style scoped>

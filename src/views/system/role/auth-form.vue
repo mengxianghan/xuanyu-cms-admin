@@ -19,8 +19,8 @@
 </template>
 
 <script>
-    import {form} from '@/utils/mixin';
-    import {changeKeys} from "@/utils/util";
+    import {form} from '@/utils/mixin'
+    import {changeKeys} from "@/utils/util"
 
     /**
      * 格式化菜单列表
@@ -32,24 +32,24 @@
             key: 'id',
             children: (record) => {
                 if (record.children && record.children.length) {
-                    return formatMenuList(record.children);
+                    return formatMenuList(record.children)
                 } else {
                     if (record.auth_id) {
-                        const authId = record.auth_id.split(',');
-                        const authName = record.auth_name.split(',');
+                        const authId = record.auth_id.split(',')
+                        const authName = record.auth_name.split(',')
                         return authName.map((item, index) => {
                             return {
                                 class: 'last-tree-node',
                                 title: item,
                                 value: `${record.id},${authId[index]}`,
                                 key: `${record.id},${authId[index]}`
-                            };
-                        });
+                            }
+                        })
                     }
                 }
             }
-        });
-    };
+        })
+    }
 
     export default {
         props: {
@@ -65,15 +65,15 @@
                 spinning: false,
                 checkedKeys: [],
                 halfCheckedKeys: []
-            };
+            }
         },
         created() {
-            this.title = '设置权限';
+            this.title = '设置权限'
         },
         watch: {
             visible(val) {
                 if (val && !this.list.length) {
-                    this.getMenuList();
+                    this.getMenuList()
                 }
             }
         },
@@ -83,50 +83,50 @@
              * @returns {Promise<void>}
              */
             getMenuList() {
-                this.spinning = true;
-                const {id: userId} = this.$ls.get('userInfo');
+                this.spinning = true
+                const {id: userId} = this.$ls.get('userInfo')
                 this.$api.system.auth.getMenuList({
                     id: userId,
                     type: '2'
                 }).then(({code, data: {list}}) => {
-                    this.spinning = false;
+                    this.spinning = false
                     if (code === '200') {
-                        this.list = formatMenuList(list);
+                        this.list = formatMenuList(list)
                     }
-                });
+                })
             },
             /**
              * 获取已有权限列表
              */
             async getAlreadyAuthList() {
-                this.spinning = true;
+                this.spinning = true
                 const {code, data: {list}} = await this.$api.system.auth.getAlreadyAuthList({
                     id: this.record.id,
                     type: this.type
-                });
-                this.spinning = false;
+                })
+                this.spinning = false
                 if (code === '200') {
-                    let checkedKeys = [];
-                    let halfCheckedKeys = [];
+                    let checkedKeys = []
+                    let halfCheckedKeys = []
                     list.forEach(item => {
-                        halfCheckedKeys.push(item.menu_id);
+                        halfCheckedKeys.push(item.menu_id)
                         if (item.auth_button_id) {
                             item.auth_button_id.split(',').forEach(authItem => {
-                                checkedKeys.push(`${item.menu_id},${authItem}`);
-                            });
+                                checkedKeys.push(`${item.menu_id},${authItem}`)
+                            })
                         }
-                    });
-                    this.checkedKeys = checkedKeys;
-                    this.halfCheckedKeys = halfCheckedKeys;
+                    })
+                    this.checkedKeys = checkedKeys
+                    this.halfCheckedKeys = halfCheckedKeys
                 }
             },
             /**
              * 设置权限
              */
             handleEdit(record) {
-                this.toggleModal();
-                this.record = record;
-                this.getAlreadyAuthList();
+                this.toggleModal()
+                this.record = record
+                this.getAlreadyAuthList()
             },
             /**
              * 点击复选框触发
@@ -134,36 +134,36 @@
              * @param e
              */
             onCheck(checkedKeys, e) {
-                const {halfCheckedKeys} = e;
-                this.halfCheckedKeys = halfCheckedKeys;
+                const {halfCheckedKeys} = e
+                this.halfCheckedKeys = halfCheckedKeys
             },
             /**
              * 确认
              */
             onOk() {
-                this.confirmLoading = true;
-                const values = [...this.formatValues(this.checkedKeys), ...this.formatValues(this.halfCheckedKeys, '1')];
+                this.confirmLoading = true
+                const values = [...this.formatValues(this.checkedKeys), ...this.formatValues(this.halfCheckedKeys, '1')]
                 this.$api.system.auth.submit({
                     id: this.record.id,
                     type: this.type,
                     values: values
                 }).then(({code}) => {
-                    this.confirmLoading = false;
+                    this.confirmLoading = false
                     if (code === '200') {
-                        this.reset();
-                        this.toggleModal();
-                        this.$emit('ok');
-                        this.$emit('complete');
+                        this.reset()
+                        this.toggleModal()
+                        this.$emit('ok')
+                        this.$emit('complete')
                     }
-                });
+                })
             },
             /**
              * 取消
              */
             onCancel() {
-                this.reset();
-                this.toggleModal();
-                this.$emit('cancel');
+                this.reset()
+                this.toggleModal()
+                this.$emit('cancel')
             },
             /**
              * 格式化提交数据
@@ -171,21 +171,21 @@
              */
             formatValues(list, isHalf = '0') {
                 const values = list.map(item => {
-                    const arr = item.split(',');
-                    const menuId = arr.length == 2 ? arr[0] : item;
-                    const authButtonId = arr.length == 2 ? arr[1] : '';
+                    const arr = item.split(',')
+                    const menuId = arr.length == 2 ? arr[0] : item
+                    const authButtonId = arr.length == 2 ? arr[1] : ''
                     return {
                         id: this.record.id,
                         type: this.type,
                         menu_id: menuId,
                         auth_button_id: authButtonId,
                         is_half: isHalf
-                    };
-                });
-                return values;
+                    }
+                })
+                return values
             }
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>
