@@ -1,0 +1,10 @@
+// Text Color
+@each $class, $value in (primary, $text-primary-color),
+    (danger, $text-danger-color),
+    (success, $text-success-color),
+    (warning, $text-warning-color),
+    (info, $text-info-color), {
+    .g-text-#{$class} {
+        color: $value !important;
+    }
+}

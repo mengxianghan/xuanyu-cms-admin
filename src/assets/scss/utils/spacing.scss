@@ -1,5 +1,3 @@
-$spacing: 8px;
-
 @each $class, $property, $value in (mt, margin-top, $spacing),
     (mb, margin-bottom, $spacing),
     (ml, margin-left, $spacing),
