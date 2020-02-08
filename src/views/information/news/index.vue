@@ -11,7 +11,7 @@
             </a-col>
             <a-col :md="19" :xs="24">
                 <a-card :bordered="false">
-                    <div class="table-page-search g-margin-bottom-2">
+                    <div class="table-page-search g-mb-2">
                         <a-form layout="inline">
                             <a-row :gutter="16">
                                 <a-col :span="8">
@@ -33,7 +33,7 @@
                             </a-row>
                         </a-form>
                     </div>
-                    <div class="g-margin-bottom-2" v-action:insert>
+                    <div class="g-mb-2" v-action:insert>
                         <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">新增新闻</a-button>
                     </div>
                     <a-table :columns="columns"

@@ -1,51 +1,23 @@
 $spacing: 8px;
-@each $type in (margin padding) {
-    @each $times in (0 1 2 3 4 5) {
-        @each $direction in (top bottom left right) {
-            @if ($times == 1) {
-                .g-#{$type}-#{$direction} {
-                    #{$type}-#{$direction}: $spacing * $times !important;
-                }
-            } @else {
-                .g-#{$type}-#{$direction}-#{$times} {
-                    #{$type}-#{$direction}: $spacing * $times !important;
-                }
-            }
-        }
 
-        /*x轴*/
-        @if ($times == 1) {
-            .g-#{$type}-x {
-                #{$type}-left: $spacing * $times !important;
-                #{$type}-right: $spacing * $times !important;
-            }
-
-            .g-#{$type}-y {
-                #{$type}-top: $spacing * $times !important;
-                #{$type}-bottom: $spacing * $times !important;
-            }
-        }
-            /*y轴*/
-        @else {
-            .g-#{$type}-x-#{$times} {
-                #{$type}-left: $spacing * $times !important;
-                #{$type}-right: $spacing * $times !important;
-            }
-
-            .g-#{$type}-y-#{$times} {
-                #{$type}-top: $spacing * $times !important;
-                #{$type}-bottom: $spacing * $times !important;
-            }
-        }
-
-        /*全部*/
-        @if ($times == 1) {
-            .g-#{$type} {
-                #{$type}: $spacing * $times !important;
-            }
-        } @else {
-            .g-#{$type}-#{$times} {
-                #{$type}: $spacing * $times !important;
+@each $class, $property, $value in (mt, margin-top, $spacing),
+    (mb, margin-bottom, $spacing),
+    (ml, margin-left, $spacing),
+    (mr, margin-right, $spacing),
+    (mx, margin-left margin-right, $spacing),
+    (my, margin-top margin-bottom, $spacing),
+    (ma, margin-left margin-right margin-top margin-bottom, $spacing),
+    (pt, padding-top, $spacing),
+    (pb, padding-bottom, $spacing),
+    (pl, padding-left, $spacing),
+    (pr, padding-right, $spacing),
+    (px, padding-left padding-right, $spacing),
+    (py, padding-top padding-bottom, $spacing),
+    (pa, padding-left padding-right padding-top padding-bottom, $spacing) {
+    @each $size in (0 1 2 3 4 5) {
+        .g-#{$class}-#{$size} {
+            @each $prop in $property {
+                #{$prop}: $value * $size !important;
             }
         }
     }

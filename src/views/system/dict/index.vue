@@ -38,7 +38,7 @@
             </a-col>
             <a-col :md="19" :xs="24">
                 <a-card :bordered="false">
-                    <div class="g-margin-bottom-2"
+                    <div class="g-mb-2"
                          v-action:insert>
                         <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">新增字典</a-button>
                     </div>
