@@ -17,6 +17,9 @@
             <a-form-item label="Key">
                 <a-input v-decorator="['key',{rules:[{required:true,message:'请输入Key'}]}]"></a-input>
             </a-form-item>
+            <a-form-item label="备注">
+                <a-textarea v-decorator="['remark']"></a-textarea>
+            </a-form-item>
             <a-form-item label="状态">
                 <a-radio-group v-decorator="['status',{initialValue:'1'}]">
                     <a-radio value="1">正常</a-radio>
@@ -92,6 +95,7 @@
                         dict_dir_id: record.dict_dir_id,
                         name: record.name,
                         key: record.key,
+                        remark: record.remark,
                         status: record.status,
                         sort: record.sort
                     })
@@ -124,6 +128,7 @@
                             dict_dir_key: this.dictDirKey,
                             name: values.name,
                             key: values.key,
+                            remark: values.remark,
                             status: values.status,
                             sort: values.sort
                         }).then(({code}) => {
