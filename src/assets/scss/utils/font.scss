@@ -1,0 +1,5 @@
+@each $value in (12, 14, 16, 24) {
+    .g-fs-#{$value} {
+        font-size: #{$value}px !important;
+    }
+}

@@ -15,12 +15,31 @@ $orange: #faad14;
 $green: #52c41a;
 $primary: #1890ff;
 
-// Text
-$text-primary-color: $primary;
-$text-danger-color: $red;
-$text-warning-color: $orange;
-$text-success-color: $green;
-$text-info-color: $blue;
+// Border
+$border-color: #d9d9d9;
+$border-radius-base: 4px;
+
+// Color
+$color-primary: $primary;
+$color-danger: $red;
+$color-warning: $orange;
+$color-success: $green;
+$color-info: $blue;
 
 // Spacing
 $spacing: 8px;
+
+// Shadow
+$box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+// Text
+$text-color: rgba(0, 0, 0, .65);
+$text-secondary-color: rgba(0, 0, 0, 0.45);
+$text-heading-color: rgba(0, 0, 0, .85);
+$text-disabled-color: rgba(0, 0, 0, .25);
+$text-primary-color: $color-primary;
+$text-danger-color: $color-danger;
+$text-warning-color: $color-warning;
+$text-success-color: $color-success;
+$text-info-color: $color-info;
+

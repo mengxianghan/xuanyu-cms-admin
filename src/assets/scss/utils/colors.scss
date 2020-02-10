@@ -1,5 +1,9 @@
 // Text Color
-@each $class, $value in (primary, $text-primary-color),
+@each $class, $value in (color, $text-color),
+    (secondary, $text-secondary-color),
+    (heading, $text-heading-color),
+    (disabled, $text-disabled-color),
+    (primary, $text-primary-color),
     (danger, $text-danger-color),
     (success, $text-success-color),
     (warning, $text-warning-color),
