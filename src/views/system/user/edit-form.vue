@@ -18,7 +18,8 @@
             <a-form-item label="角色">
                 <a-select v-decorator="['role_id',{rules:[{required:true,message:'请输入选择角色'}]}]"
                           mode="multiple"
-                          :loading="roleLoading">
+                          :loading="roleLoading"
+                          :disabled="isSuper">
                     <a-select-option v-for="item in roleList" :key="item.id">{{item.name}}</a-select-option>
                 </a-select>
             </a-form-item>
