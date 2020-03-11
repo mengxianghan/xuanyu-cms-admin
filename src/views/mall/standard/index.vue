@@ -127,8 +127,7 @@
             parentId() {
                 this.pagination = {
                     ...this.pagination,
-                    current: 1,
-                    pageSize: this.pagination.pageSize
+                    current: 1
                 }
                 this.getList()
             }
