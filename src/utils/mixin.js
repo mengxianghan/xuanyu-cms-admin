@@ -20,17 +20,19 @@ export const form = {
             },
             formItemLayoutGoods: {
                 labelCol: {
-                    sm: 7,
-                    lg: 7
+                    sm: 4,
+                    lg: 4
                 },
                 wrapperCol: {
-                    sm: 17,
+                    sm: 20,
                     lg: 10
                 }
             },
-            form: this.$form.createForm(this),
             confirmLoading: false
         }
+    },
+    beforeCreate() {
+        this.form = this.$form.createForm(this)
     },
     methods: {
         /**
