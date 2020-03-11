@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-card :bordered="false">
-            <a-form layout="inline" class="g-mb-2">
+            <a-form layout="inline" class="mb-2">
                 <a-form-item>
                     <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">新增栏目</a-button>
                 </a-form-item>

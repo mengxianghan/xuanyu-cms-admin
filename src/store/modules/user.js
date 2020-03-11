@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import router from '@/router'
-import {message} from 'ant-design-vue/es'
+import {message} from 'ant-design-vue'
 
 const state = {
     token: '',

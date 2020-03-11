@@ -2,10 +2,10 @@ import Vue from 'vue'
 import router from '@/router'
 import axios from 'axios'
 import qs from 'qs'
-import {message} from 'ant-design-vue/es'
+import {message} from 'ant-design-vue'
 
 const server = axios.create({
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.VUE_APP_BASE_URL,
     timeout: 10000,
     withCredentials: false,
     headers: {

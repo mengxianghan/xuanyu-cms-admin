@@ -1,5 +1,0 @@
-@each $value in (left center right) {
-    .g-align-#{$value} {
-        text-align: $value !important;
-    }
-}

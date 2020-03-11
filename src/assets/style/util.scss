@@ -1,0 +1,52 @@
+//Align
+@each $value in (left center right) {
+    .align-#{$value} {
+        text-align: $value !important;
+    }
+}
+
+//Color
+@each $class, $value in (color, $text-color),
+        (secondary, $text-secondary-color),
+        (heading, $text-heading-color),
+        (disabled, $text-disabled-color),
+        (primary, $text-primary-color),
+        (danger, $text-danger-color),
+        (success, $text-success-color),
+        (warning, $text-warning-color),
+        (info, $text-info-color), {
+    .text-#{$class} {
+        color: $value !important;
+    }
+}
+
+//FontSize
+@each $value in (12, 14, 16, 24) {
+    .fs-#{$value} {
+        font-size: #{$value}px !important;
+    }
+}
+
+//Spacing
+@each $class, $property, $value in (mt, margin-top, $spacing),
+        (mb, margin-bottom, $spacing),
+        (ml, margin-left, $spacing),
+        (mr, margin-right, $spacing),
+        (mx, margin-left margin-right, $spacing),
+        (my, margin-top margin-bottom, $spacing),
+        (ma, margin-left margin-right margin-top margin-bottom, $spacing),
+        (pt, padding-top, $spacing),
+        (pb, padding-bottom, $spacing),
+        (pl, padding-left, $spacing),
+        (pr, padding-right, $spacing),
+        (px, padding-left padding-right, $spacing),
+        (py, padding-top padding-bottom, $spacing),
+        (pa, padding-left padding-right padding-top padding-bottom, $spacing) {
+    @each $size in (0 1 2 3 4 5) {
+        .#{$class}-#{$size} {
+            @each $prop in $property {
+                #{$prop}: $value * $size !important;
+            }
+        }
+    }
+}

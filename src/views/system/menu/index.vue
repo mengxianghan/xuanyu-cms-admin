@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-card :bordered="false">
-            <div class="g-mb-2" v-action:insert>
+            <div class="mb-2" v-action:insert>
                 <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">新增菜单</a-button>
             </div>
             <a-table :columns="columns"

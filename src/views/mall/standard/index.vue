@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-card :bordered="false">
-            <div class="g-mb-2" v-action:insert>
+            <div class="mb-2" v-action:insert>
                 <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">
                     <template v-if="isFirst">
                         新增规格
@@ -11,7 +11,7 @@
                     </template>
                 </a-button>
             </div>
-            <a-breadcrumb class="g-mb-2">
+            <a-breadcrumb class="mb-2">
                 <a-breadcrumb-item v-if="!isFirst">
                     <a @click="handleBack">
                         <a-icon type="rollback"/>

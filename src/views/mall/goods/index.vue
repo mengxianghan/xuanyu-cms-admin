@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-card :bordered="false">
-            <div class="g-mb-2" v-action:insert>
+            <div class="mb-2" v-action:insert>
                 <a-button type="primary" icon="plus" @click="$refs.editForm.handleInsert()">新增商品</a-button>
             </div>
             <a-table :columns="columns"
@@ -83,7 +83,7 @@
         },
         {
             title: '操作',
-            dataIndex: 'operation',
+            key: 'operation',
             scopedSlots: {customRender: 'operation'}
         }
     ]
