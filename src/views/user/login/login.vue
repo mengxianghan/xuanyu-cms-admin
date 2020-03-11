@@ -48,6 +48,7 @@
 
 <script>
     import {mapState, mapActions} from 'vuex'
+    import md5 from 'js-md5'
 
     export default {
         name: "login",
@@ -56,8 +57,6 @@
                 form: this.$form.createForm(this),
                 loading: false
             }
-        },
-        created() {
         },
         mounted() {
             this.form.setFieldsValue({
@@ -82,8 +81,8 @@
                     if (!errors) {
                         this.loading = true
                         this.login({
-                            username: values.username,
-                            password: values.password
+                            ...values,
+                            password: md5(values.password)
                         }).then(() => {
                             this.loading = false
                         }, err => {
