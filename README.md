@@ -1,14 +1,14 @@
 <p align="center">
-<img src="http://q219t1n5l.bkt.clouddn.com/logo.svg" height="200" />
+<img src="http://cdn.xuanyunet.com/common/images/logo.svg" height="200" />
 </p>
 
 # xuanyu CMS
 
-xuanyu CMS是一款前后端分离快速后台开发框架，前端基于vue-ant-design，后端基于codeigniter轻量级php框架开发
+xuanyu CMS 是一款前后端分离快速后台开发框架，前端基于 ant-design-vue ，后端基于 Codeigniter 轻量级 php 框架开发
 
 前端  
-Github地址：[https://github.com/mengxianghan/xuanyu-cms-front](https://github.com/mengxianghan/xuanyu-cms-front)  
-码云地址：[https://gitee.com/1056811341/xuanyu-cms-front](https://gitee.com/1056811341/xuanyu-cms-front)  
+Github地址：[https://github.com/mengxianghan/xuanyu-cms-admin](https://github.com/mengxianghan/xuanyu-cms-admin)  
+码云地址：[https://gitee.com/1056811341/xuanyu-cms-admin](https://gitee.com/1056811341/xuanyu-cms-admin)  
 后端  
 Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/mengxianghan/xuanyu-cms)  
 码云地址：[https://gitee.com/1056811341/xuanyu-cms](https://gitee.com/1056811341/xuanyu-cms)
@@ -38,7 +38,7 @@ Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/m
   - 用户管理
   - 部门管理
   - 岗位管理
-  - 系统日志 :fire:
+  - 系统日志
 - 信息管理
   - 栏目管理
   - 模版管理
@@ -48,24 +48,24 @@ Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/m
 ## 预览
 <table>
     <tr>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/工作台.png" alt="工作台"/></td>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/基本设置.png" alt="基本设置"/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E5%B7%A5%E4%BD%9C%E5%8F%B0.png" alt="工作台"/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE.png" alt="基本设置"/></td>
     </tr>
     <tr>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/菜单管理.png" alt="菜单管理"/></td>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/用户管理.png" alt=""/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png" alt="菜单管理"/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png" alt=""/></td>
     </tr>
     <tr>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/设置权限.png" alt=""/></td>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/部门管理.png" alt=""/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90.png" alt=""/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.png" alt=""/></td>
     </tr>
 	<tr>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/栏目管理.png" alt=""/></td>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/新闻管理.png" alt=""/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.png" alt=""/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E6%96%B0%E9%97%BB%E7%AE%A1%E7%90%86.png" alt=""/></td>
     </tr>	 
     <tr>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/新增新闻.png" alt=""/></td>
-        <td><img src="http://q219t1n5l.bkt.clouddn.com/单页管理.png" alt=""/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E6%96%B0%E5%A2%9E%E6%96%B0%E9%97%BB.png" alt=""/></td>
+        <td><img src="http://cdn.xuanyunet.com/cms/images/%E5%8D%95%E9%A1%B5%E7%AE%A1%E7%90%86.png" alt=""/></td>
     </tr>
 </table>
 
@@ -76,8 +76,8 @@ Github地址：[https://github.com/mengxianghan/xuanyu-cms](https://github.com/m
 npm install
 
 # 本地运行
-# 通过 localhost:8080 访问页面
-npm run dev
+# 通过 localhost:9999 访问页面
+npm run serve
 
 # 生产环境构建
 npm run build
@@ -86,15 +86,20 @@ npm run build
 ## 配置
 
 修改请求地址  
-开发环境 `/config/dev.env.js`  
-生产环境 `/config/prod.env.js`  
-修改 `BASH_URL` 的地址  
+开发环境 `env.development`  
+生产环境 `env.production`  
+修改 `VUE_APP_BASH_URL` 的地址  
 
 路由 `/src/config/router.config.js`  
 基础路由 `constantRoutesMap`  
 白名单 `whiteList`  
 
 ## 更新日志  
+1.0.3  
+`2020-3-17`  
+升级 vue-cli 到 vue-cli3  
+生产环境使用 cdn 减小打包后的大小，减少首屏打开时间  
+
 1.0.2  
 `2019-12-18`  
 新增 `DescriptionList` 描述列表组件  
